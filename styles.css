@@ -1,0 +1,17 @@
+body {
+    background: rgb(115, 138, 214);
+}
+.Header {
+    background: #FFF;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    
+}
+.Header img {
+    height: 5rem;
+    width: 5rem;
+    border: 1px solid black;
+    border-radius: 2.5rem;
+    border-color: black;
+}
