@@ -1,0 +1,24 @@
+{
+  "name": "blog_bahia",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vitor-rc1/Blog-do-Bahia.git"
+  },
+  "author": "Vitor RC",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/vitor-rc1/Blog-do-Bahia/issues"
+  },
+  "homepage": "https://github.com/vitor-rc1/Blog-do-Bahia#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "pg": "^8.4.1"
+  }
+}
