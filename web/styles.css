@@ -1,12 +1,4 @@
 
-body {
-    background: #000000cc;
-    /* background-color: #04625F; */
-    padding: 10px 10px;
-    font-family: sans-serif;
-    background-image: url("bg1.jpg");
-    
-}
 .Header {
     display: flex;
     justify-content: center;
