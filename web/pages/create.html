@@ -13,7 +13,7 @@
   <form action="">
     <h2 class="title">Criar post</h2>
     <div class="container">
-      <div class="card-content">
+      <div class="page-content">
         <label for="card-text">Texto do cartão</label>
         <textarea type="text" id="card-text" placeholder="Digite seu texto aqui"></textarea>
         <label for="card-img">Imagem do cartão</label>
@@ -21,16 +21,34 @@
 
         <p>Conteúdo da página</p>
         <div class="items-page">
-          <select name="" id="">
-            <option value="audio">audio</option>
-            <option value="image">image</option>
-            <option value="page">page</option>
-            <option value="text">text</option>
-            <option value="video">video</option>
-          </select>
-          
+          <label for="item-title-1"> Titulo
+            <input type="text" id="item-title-1" name="item-title-1">
+          </label>
+
+          <div class="item">
+            <label for="item-1"> Tipo </label>
+            <select name="item-1" id="item-1">
+              <option value="audio">audio</option>
+              <option value="image">image</option>
+              <option value="page">page</option>
+              <option value="text">text</option>
+              <option value="video">video</option>
+            </select>
+
+            <label for="item-URL-1"> URL </label>
+            <input type="text" id="item-URL-1" name="item-URL-1">
+
+            <label for="item-width-1"> Largura </label>
+            <input type="text" id="item-width-1" name="item-width-1" class="display">
+
+
+            <label for="item-height-1"> Altura </label>
+            <input type="text" id="item-height-1" name="item-height-1" class="display">
+          </div>
+
           <!-- <textarea type="text" id="content-page" placeholder="Digite seu texto aqui"></textarea> -->
         </div>
+        <button id="add-item">Adicionar conteúdo</button>
 
       </div>
 
@@ -41,6 +59,10 @@
     </div>
 
   </form>
+
+  <div id="preview">
+    Preview
+  </div>
 
   <script src="../scripts/create.js"></script>
 </body>
