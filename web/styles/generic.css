@@ -4,3 +4,28 @@ body {
   background-image: url("../images/bg1.jpg");
   
 }
+
+.post {
+  width: 200px;
+  height: fit-content;
+  background-color: white;
+  padding: 10px;
+  margin: 15px;
+
+  border-radius: 5px;
+  transition: color 0.2s;
+  display: inline-block;
+  box-shadow: 3px 5px;
+
+}
+
+.post:hover {
+  background: black;
+  color: white;
+  cursor: pointer;
+  
+}
+
+.postTitle {
+  text-align: center;
+}

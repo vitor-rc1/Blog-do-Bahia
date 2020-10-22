@@ -65,7 +65,22 @@ function addItemPage(event) {
   itemsPage.appendChild(divItem)
 };
 
+function post(event) {
+  event.preventDefault();
+  console.log(event.submitter.id);
+  
+  const cardText = document.querySelector('#card-text').value;
+  const carImg = document.querySelector('#card-img').value
+  const postTitle = document.querySelector('#post-title').value
+
+
+  console.log(cardText + carImg + postTitle)
+}
+
 window.onload = () => {
-  const addItem = document.querySelector('#add-item')
-  addItem.addEventListener('click', addItemPage)
+  const addItem = document.querySelector('#add-item');
+  addItem.addEventListener('click', addItemPage);
+
+  const form = document.querySelector('form');
+  form.addEventListener('submit', post);
 }
