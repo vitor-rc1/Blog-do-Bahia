@@ -59,3 +59,11 @@ button {
 .display {
   width: 60px;
 }
+
+#preview-post {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}

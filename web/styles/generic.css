@@ -29,3 +29,15 @@ body {
 .postTitle {
   text-align: center;
 }
+
+.card-img {
+  padding: 5px;
+  width: 190px;
+  margin: 0 auto;
+  
+}
+
+.card-text {
+  word-wrap: break-word;
+  text-align: justify;
+}
