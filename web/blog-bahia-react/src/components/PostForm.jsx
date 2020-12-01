@@ -83,6 +83,15 @@ class PostForm extends React.Component {
                 onChange={({target: {name, value}}) => this.updatePost(name, value)}
               />
 
+              <label htmlFor="card-color">Cor do texto do cartão</label>
+              <input 
+                type="text" 
+                id="card-text-color" 
+                placeholder="rgb(r, g, b)" 
+                name="cardTextColor"
+                onChange={({target: {name, value}}) => this.updatePost(name, value)}
+              />
+
               <p>Conteúdo da página</p>
               <div className="items-page">
                 <label htmlFor="post-title"> Titulo
@@ -186,7 +195,6 @@ class PostForm extends React.Component {
         </form>
 
         <div id="preview-post">
-          Preview
           
         </div>
       </div>

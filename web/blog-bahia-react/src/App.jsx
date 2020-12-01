@@ -12,7 +12,8 @@ function App() {
       <Switch>
         <Route exact path="/" component={Home} />
         <Route exact path="/about" component={About} />
-        <Route exact path="/post" component={PostForm} />
+        <Route exact path="/post/new" component={PostForm} />
+        <Route exact path="/post/:id/edit" component={PostForm} />
       </Switch>
     </BrowserRouter>
   );
