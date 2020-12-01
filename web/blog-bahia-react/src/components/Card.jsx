@@ -6,6 +6,10 @@ import './Card.css'
 import exampleImg from '../images/img1.jpg'
 
 class Card extends React.Component {
+  constructor() {
+    super();
+    this.state = { ...this.props.card }
+  }
   render() {
     const id = 1;
     return(

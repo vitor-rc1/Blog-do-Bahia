@@ -1,0 +1,70 @@
+.title {
+  background-color: white;
+  text-align: center;
+  color: black;
+}
+
+.buttons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+button {
+  margin: 0 15px;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.page-content {
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.page-content label {
+  margin-top: 15px;
+  margin-bottom: 10px;
+}
+
+#card-text {
+  width: 300px;
+  height: 100px;
+}
+
+.items-page {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#content-page {
+  width: 300px;
+  height: 200px;
+}
+
+.item {
+  margin: 0 0 10px 0;
+}
+
+.item label {
+  margin: 0 10px;
+}
+
+.display {
+  width: 60px;
+}
+
+#preview-post {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
