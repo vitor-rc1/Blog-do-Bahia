@@ -10,7 +10,7 @@ class Card extends React.Component {
     return(
       <Link 
         className="card" 
-        to={`/post/${id}`} 
+        to={`/${id}`} 
         style={{color:`${cardTextColor}`, backgroundColor:`${cardColor}`}}
       >
         {cardTitle ? <h2 className="card-title"> Title </h2> : ''}

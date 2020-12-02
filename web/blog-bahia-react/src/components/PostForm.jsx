@@ -18,8 +18,8 @@ class PostForm extends React.Component {
       type: '',
       url: '',
       text: '',
-      width: 0,
-      height: 0,
+      width: '',
+      height: '',
       color: '',
     }
     if (this.state.postItems) {
@@ -51,6 +51,7 @@ class PostForm extends React.Component {
 
   render() {
     const items = this.state.postItems;
+    const { cardText, cardImg, cardColor, cardTextColor, title, postItems } = this.state
     return (
       <div>
         <form>
@@ -64,6 +65,7 @@ class PostForm extends React.Component {
                 placeholder="Digite seu texto aqui"
                 name="cardText"
                 onChange={({target: {name, value}}) => this.updatePost(name, value)}
+                value={ cardText }
               />
               <label htmlFor="card-img">Imagem do cartão</label>
               <input 
@@ -72,6 +74,7 @@ class PostForm extends React.Component {
                 placeholder="URL" 
                 name="cardImg"
                 onChange={({target: {name, value}}) => this.updatePost(name, value)}
+                value={ cardImg }
               />
 
               <label htmlFor="card-color">Cor do cartão</label>
@@ -81,6 +84,7 @@ class PostForm extends React.Component {
                 placeholder="rgb(r, g, b)" 
                 name="cardColor"
                 onChange={({target: {name, value}}) => this.updatePost(name, value)}
+                value={ cardColor }
               />
 
               <label htmlFor="card-color">Cor do texto do cartão</label>
@@ -90,6 +94,7 @@ class PostForm extends React.Component {
                 placeholder="rgb(r, g, b)" 
                 name="cardTextColor"
                 onChange={({target: {name, value}}) => this.updatePost(name, value)}
+                value={ cardTextColor }
               />
 
               <p>Conteúdo da página</p>
@@ -98,9 +103,10 @@ class PostForm extends React.Component {
                   <input 
                     type="text" 
                     id="post-title"              
-                    name="cardTitle"
+                    name="title"
                     onChange={({target: {name, value}}) => this.updatePost(name, value)}
-                  />
+                    value={ title }
+                />
                 </label>
                 <div>
                   {items ? items.map((item, index) => {
@@ -111,13 +117,26 @@ class PostForm extends React.Component {
                           id={`item-${index}`}
                           name="type"
                           onChange={({target: {name, value}}) => this.updateItemsState(index, name, value)}
+                          value={ postItems[index].type }
                         >
-                          <option disabled="" hidden="">selecione</option>
-                          <option value="audio">audio</option>
-                          <option value="image">image</option>
-                          <option value="page">page</option>
-                          <option value="text">text</option>
-                          <option value="video">video</option>
+                          <option hidden="true">Selecione</option>
+                          <option value="audio">Áudio</option>
+                          <option value="image">Imagem</option>
+                          <option value="text">Texto</option>
+                          <option value="video">Vídeo</option>
+                        </select>
+
+                        <label htmlFor={`item-${index}`}>Posição</label>
+                        <select 
+                          id={`item-position-${index}`}
+                          name="position"
+                          onChange={({target: {name, value}}) => this.updateItemsState(index, name, value)}
+                          value={ postItems[index].position }
+                        >
+                          <option hidden="true">Selecione</option>
+                          <option value="left">Esquerda</option>
+                          <option value="middle">Meio</option>
+                          <option value="right">Direita</option>
                         </select>
 
                         <label htmlFor={`item-URL-${index}`}>URL</label>
@@ -126,6 +145,7 @@ class PostForm extends React.Component {
                           type="text"
                           name="url"
                           onChange={({target: {name, value}}) => this.updateItemsState(index, name, value)}
+                          value={ postItems[index].url }
                         />
 
                         <label htmlFor={`item-text-${index}`}>Text</label>
@@ -134,6 +154,7 @@ class PostForm extends React.Component {
                           type="text"
                           name="text"
                           onChange={({target: {name, value}}) => this.updateItemsState(index, name, value)}
+                          value={ postItems[index].text }
                         />
 
                         <label htmlFor={`item-width-${index}`}>Largura</label>
@@ -143,6 +164,7 @@ class PostForm extends React.Component {
                           className="display"
                           name="width"
                           onChange={({target: {name, value}}) => this.updateItemsState(index, name, value)}
+                          value={ postItems[index].width }
                         />
 
                         <label htmlFor={`item-height-${index}`}>Altura</label>
@@ -152,6 +174,7 @@ class PostForm extends React.Component {
                           className="display"
                           name="height"
                           onChange={({target: {name, value}}) => this.updateItemsState(index, name, value)}
+                          value={ postItems[index].height }
                         />
 
                         <label htmlFor={`item-color-${index}`}>Cor</label>
@@ -161,6 +184,7 @@ class PostForm extends React.Component {
                           className="display"
                           name="color"
                           onChange={({target: {name, value}}) => this.updateItemsState(index, name, value)}
+                          value={ postItems[index].color }
                         />
 
                         <button 

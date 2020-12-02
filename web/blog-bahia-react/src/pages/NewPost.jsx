@@ -1,6 +1,6 @@
 import React from 'react';
-import { Redirect } from 'react-router-dom';
 import PostForm from '../components/PostForm';
+import { Redirect } from 'react-router-dom';
 
 class NewPost extends React.Component {
   constructor() {
@@ -10,7 +10,8 @@ class NewPost extends React.Component {
   }
 
   handleSubmit(post) {
-    this.setState({ shouldRedirect: true })
+    // this.setState({ shouldRedirect: true })
+    console.log(post)
   }
 
   render() {
