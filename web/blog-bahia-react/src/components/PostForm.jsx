@@ -181,14 +181,28 @@ class PostForm extends React.Component {
                 (event) => {
                   event.preventDefault(); 
                   this.newItem();
+                  }
                 }
-              }>Adicionar conteúdo</button>
+              >
+                Adicionar conteúdo
+              </button>
 
             </div>
 
           </div>
           <div className="buttons">
-            <button id="create" type="submit">Criar</button>
+            <button 
+              id="create" 
+              type="submit"
+              onClick={
+                (event) => {
+                  event.preventDefault(); 
+                  this.props.handleSubmit(this.state);
+                }
+              }
+            >
+              Criar
+            </button>
             <button id="preview" type="submit">Preview</button>
           </div>
 
