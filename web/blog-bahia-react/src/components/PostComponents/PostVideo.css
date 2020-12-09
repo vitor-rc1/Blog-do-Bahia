@@ -1,0 +1,9 @@
+.post-video-component {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 10px 0;
+}
+.post-video-component-text {
+  margin: 3px;
+}

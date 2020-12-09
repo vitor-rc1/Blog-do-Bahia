@@ -1,0 +1,33 @@
+.post {
+  display: flex;
+  flex-direction: column;
+}
+
+.post-content {
+  display: flex;
+}
+
+.post-title {
+  margin: 30px auto;
+}
+
+.post-left {
+  width: 30%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.post-middle {
+  width: 40%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.post-right {
+  width: 30%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}

@@ -1,4 +1,5 @@
 import exampleImage from '../images/post/Rectangle 3.svg';
+import audioExample from '../audios/bensound-ukulele.mp3'
 
 const objExample = {
   title: 'Viagem ao centro do nada.',
@@ -27,7 +28,7 @@ const objExample = {
     {
       type: 'audio',
       position: 'right',
-      url: 'https://www.youtube.com/embed/5qap5aO4i9A',
+      url: 'https://www.bensound.com/bensound-music/bensound-ukulele.mp3',
       text: 'Fonte: Instagram',
       width: 250,
       height: 250,
