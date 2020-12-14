@@ -16,11 +16,13 @@ class PostForm extends React.Component {
   newItem() {
     const item = {
       type: '',
+      position: '',
       url: '',
       text: '',
       width: '',
       height: '',
-      color: '',
+      colorBackground: '',
+      colorText: '',
     }
     if (this.state.postItems) {
       this.setState({
@@ -51,7 +53,7 @@ class PostForm extends React.Component {
 
   render() {
     const items = this.state.postItems;
-    const { cardText, cardImg, cardColor, cardTextColor, title, postItems, colorPage, colorBackground, colorText } = this.state
+    const { cardText, cardImg, cardColor, cardTextColor, title, postItems, colorPage } = this.state
     return (
       <div>
         <form>
@@ -123,6 +125,7 @@ class PostForm extends React.Component {
 
                 <div>
                   {items ? items.map((item, index) => {
+                    const { type, position, url, text, width, height, colorBackground, colorText } = postItems[index];
                     return (
                       <div className="item" key={index}>
                         <label htmlFor={`item-${index}`}>Tipo</label>
@@ -130,7 +133,7 @@ class PostForm extends React.Component {
                           id={`item-${index}`}
                           name="type"
                           onChange={({ target: { name, value } }) => this.updateItemsState(index, name, value)}
-                          value={postItems[index].type}
+                          value={type}
                         >
                           <option hidden="true">Selecione</option>
                           <option value="audio">Áudio</option>
@@ -144,7 +147,7 @@ class PostForm extends React.Component {
                           id={`item-position-${index}`}
                           name="position"
                           onChange={({ target: { name, value } }) => this.updateItemsState(index, name, value)}
-                          value={postItems[index].position}
+                          value={position}
                         >
                           <option hidden="true">Selecione</option>
                           <option value="left">Esquerda</option>
@@ -154,7 +157,7 @@ class PostForm extends React.Component {
 
                         <label
                           htmlFor={`item-URL-${index}`}
-                          hidden={postItems[index].type === 'text'}
+                          hidden={type === 'text'}
                         >
                           URL
                         </label>
@@ -163,8 +166,8 @@ class PostForm extends React.Component {
                           type="text"
                           name="url"
                           onChange={({ target: { name, value } }) => this.updateItemsState(index, name, value)}
-                          value={postItems[index].url}
-                          hidden={postItems[index].type === 'text'}
+                          value={url}
+                          hidden={type === 'text'}
 
                         />
 
@@ -174,12 +177,12 @@ class PostForm extends React.Component {
                           type="text"
                           name="text"
                           onChange={({ target: { name, value } }) => this.updateItemsState(index, name, value)}
-                          value={postItems[index].text}
+                          value={text}
                         />
 
                         <label
                           htmlFor={`item-width-${index}`}
-                          hidden={postItems[index].type === 'audio'}
+                          hidden={type === 'audio'}
                         >
                           Largura
                         </label>
@@ -190,13 +193,13 @@ class PostForm extends React.Component {
                           placeholder="px"
                           name="width"
                           onChange={({ target: { name, value } }) => this.updateItemsState(index, name, value)}
-                          value={postItems[index].width}
-                          hidden={postItems[index].type === 'audio'}
+                          value={width}
+                          hidden={type === 'audio'}
                         />
 
                         <label
                           htmlFor={`item-height-${index}`}
-                          hidden={postItems[index].type === 'audio' || postItems[index].type === 'text'}
+                          hidden={type === 'audio' || type === 'text'}
                         >
                           Altura
                         </label>
@@ -207,13 +210,13 @@ class PostForm extends React.Component {
                           placeholder="px"
                           name="height"
                           onChange={({ target: { name, value } }) => this.updateItemsState(index, name, value)}
-                          value={postItems[index].height}
-                          hidden={postItems[index].type === 'audio' || postItems[index].type === 'text'}
+                          value={height}
+                          hidden={type === 'audio' || type === 'text'}
                         />
 
                         <label
                           htmlFor={`item-color-text-${index}`}
-                          hidden={postItems[index].type !== 'text'}
+                          hidden={type !== 'text'}
                         >
                           Cor do texto
                           </label>
@@ -224,13 +227,13 @@ class PostForm extends React.Component {
                           placeholder="rgb(r, g, b)"
                           name="colorText"
                           onChange={({ target: { name, value } }) => this.updateItemsState(index, name, value)}
-                          value={postItems[index].colorText}
-                          hidden={postItems[index].type !== 'text'}
+                          value={colorText}
+                          hidden={type !== 'text'}
                         />
 
                         <label
                           htmlFor={`item-color-background-${index}`}
-                          hidden={postItems[index].type !== 'text'}
+                          hidden={type !== 'text'}
                         >
                           Cor de fundo
                         </label>
@@ -241,8 +244,8 @@ class PostForm extends React.Component {
                           placeholder="rgb(r, g, b)"
                           name="colorBackground"
                           onChange={({ target: { name, value } }) => this.updateItemsState(index, name, value)}
-                          value={postItems[index].colorBackground}
-                          hidden={postItems[index].type !== 'text'}
+                          value={colorBackground}
+                          hidden={type !== 'text'}
                         />
 
                         <button

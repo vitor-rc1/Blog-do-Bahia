@@ -34,6 +34,30 @@ const objExample = {
       url: 'https://www.bensound.com/bensound-music/bensound-ukulele.mp3',
       text: 'Fonte: Instagram',
     },
+    {
+      type: 'image',
+      position: 'left',
+      url: exampleImage,
+      text: 'Fonte: Instagram',
+      width: 200,
+      height: 200,
+    },
+    {
+      type: 'image',
+      position: 'right',
+      url: exampleImage,
+      text: 'Fonte: Instagram',
+      width: 200,
+      height: 200,
+    },
+    {
+      type: 'image',
+      position: 'middle',
+      url: exampleImage,
+      text: 'Fonte: Instagram',
+      width: 200,
+      height: 200,
+    },
   ]
 }
 
