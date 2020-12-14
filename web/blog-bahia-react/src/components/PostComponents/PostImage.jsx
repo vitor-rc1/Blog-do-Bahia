@@ -6,22 +6,23 @@ class PostImage extends React.Component {
     super();
     this.textImage = this.textImage.bind(this);
   }
-  textImage() {
+  textImage(text) {
     return (
-      <h6 className="post-image-component-text" >{this.props.params.text}</h6>
+      <h6 className="post-image-component-text" >{text}</h6>
     )
   }
   render() {
+    const { url, text, width, height } = this.props.params;
     return (
       <div className="post-image-component">
         <img
-          src={this.props.params.url}
-          alt={this.props.params.text}
-          width={this.props.params.width}
-          height={this.props.params.height}
+          src={url}
+          alt={text}
+          width={width}
+          height={height}
           className="post-image-component-image"
         />
-        { this.props.params.text ? this.textImage() : ''}
+        { text ? this.textImage(text) : ''}
       </div>
     )
   }

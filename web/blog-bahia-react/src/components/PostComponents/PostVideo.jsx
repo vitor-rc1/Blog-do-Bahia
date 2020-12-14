@@ -6,22 +6,23 @@ class PostVideo extends React.Component {
     super();
     this.textVideo = this.textVideo.bind(this);
   }
-  textVideo() {
+  textVideo(text) {
     return (
-      <h6 className="post-video-component-text" >{this.props.params.text}</h6>
+      <h6 className="post-video-component-text" >{text}</h6>
     )
   }
   render() {
+    const { url, text, width, height } = this.props.params;
     return (
       <div className="post-video-component">
         <iframe
-          src={this.props.params.url}
-          alt={this.props.params.text}
-          width={this.props.params.width}
-          height={this.props.params.height}
+          src={ url }
+          title= { url }
+          width={ width }
+          height={ height }
           className="post-video-component-video"
         />
-        { this.props.params.text ? this.textVideo() : ''}
+        { text ? this.textVideo(text) : ''}
       </div>
     )
   }

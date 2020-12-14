@@ -51,7 +51,7 @@ class PostForm extends React.Component {
 
   render() {
     const items = this.state.postItems;
-    const { cardText, cardImg, cardColor, cardTextColor, title, postItems } = this.state
+    const { cardText, cardImg, cardColor, cardTextColor, title, postItems, colorPage, colorBackground, colorText } = this.state
     return (
       <div>
         <form>
@@ -59,65 +59,78 @@ class PostForm extends React.Component {
           <div className="container">
             <div className="page-content">
               <label htmlFor="card-text">Texto do cartão</label>
-              <textarea 
-                type="text" 
-                id="card-text" 
+              <textarea
+                type="text"
+                id="card-text"
                 placeholder="Digite seu texto aqui"
                 name="cardText"
-                onChange={({target: {name, value}}) => this.updatePost(name, value)}
-                value={ cardText }
+                onChange={({ target: { name, value } }) => this.updatePost(name, value)}
+                value={cardText}
               />
               <label htmlFor="card-img">Imagem do cartão</label>
-              <input 
-                type="text" 
-                id="card-img" 
-                placeholder="URL" 
+              <input
+                type="text"
+                id="card-img"
+                placeholder="URL"
                 name="cardImg"
-                onChange={({target: {name, value}}) => this.updatePost(name, value)}
-                value={ cardImg }
+                onChange={({ target: { name, value } }) => this.updatePost(name, value)}
+                value={cardImg}
               />
 
               <label htmlFor="card-color">Cor do cartão</label>
-              <input 
-                type="text" 
-                id="card-color" 
-                placeholder="rgb(r, g, b)" 
+              <input
+                type="text"
+                id="card-color"
+                placeholder="rgb(r, g, b)"
                 name="cardColor"
-                onChange={({target: {name, value}}) => this.updatePost(name, value)}
-                value={ cardColor }
+                onChange={({ target: { name, value } }) => this.updatePost(name, value)}
+                value={cardColor}
               />
 
               <label htmlFor="card-color">Cor do texto do cartão</label>
-              <input 
-                type="text" 
-                id="card-text-color" 
-                placeholder="rgb(r, g, b)" 
+              <input
+                type="text"
+                id="card-text-color"
+                placeholder="rgb(r, g, b)"
                 name="cardTextColor"
-                onChange={({target: {name, value}}) => this.updatePost(name, value)}
-                value={ cardTextColor }
+                onChange={({ target: { name, value } }) => this.updatePost(name, value)}
+                value={cardTextColor}
               />
 
               <p>Conteúdo da página</p>
+
               <div className="items-page">
-                <label htmlFor="post-title"> Titulo
-                  <input 
-                    type="text" 
-                    id="post-title"              
-                    name="title"
-                    onChange={({target: {name, value}}) => this.updatePost(name, value)}
-                    value={ title }
+                <label htmlFor="post-title">Titulo</label>
+                <input
+                  type="text"
+                  id="post-title"
+                  name="title"
+                  onChange={({ target: { name, value } }) => this.updatePost(name, value)}
+                  value={title}
                 />
-                </label>
+
+
+                <label htmlFor="color-page">Cor de fundo do post</label>
+                <input
+                  type="text"
+                  id="color-page"
+                  placeholder="rgb(r, g, b)"
+                  name="colorPage"
+                  onChange={({ target: { name, value } }) => this.updatePost(name, value)}
+                  value={colorPage}
+                />
+
+
                 <div>
                   {items ? items.map((item, index) => {
                     return (
                       <div className="item" key={index}>
                         <label htmlFor={`item-${index}`}>Tipo</label>
-                        <select 
+                        <select
                           id={`item-${index}`}
                           name="type"
-                          onChange={({target: {name, value}}) => this.updateItemsState(index, name, value)}
-                          value={ postItems[index].type }
+                          onChange={({ target: { name, value } }) => this.updateItemsState(index, name, value)}
+                          value={postItems[index].type}
                         >
                           <option hidden="true">Selecione</option>
                           <option value="audio">Áudio</option>
@@ -127,11 +140,11 @@ class PostForm extends React.Component {
                         </select>
 
                         <label htmlFor={`item-${index}`}>Posição</label>
-                        <select 
+                        <select
                           id={`item-position-${index}`}
                           name="position"
-                          onChange={({target: {name, value}}) => this.updateItemsState(index, name, value)}
-                          value={ postItems[index].position }
+                          onChange={({ target: { name, value } }) => this.updateItemsState(index, name, value)}
+                          value={postItems[index].position}
                         >
                           <option hidden="true">Selecione</option>
                           <option value="left">Esquerda</option>
@@ -139,60 +152,105 @@ class PostForm extends React.Component {
                           <option value="right">Direita</option>
                         </select>
 
-                        <label htmlFor={`item-URL-${index}`}>URL</label>
+                        <label
+                          htmlFor={`item-URL-${index}`}
+                          hidden={postItems[index].type === 'text'}
+                        >
+                          URL
+                        </label>
                         <input
-                          id={`item-URL-${index}`} 
+                          id={`item-URL-${index}`}
                           type="text"
                           name="url"
-                          onChange={({target: {name, value}}) => this.updateItemsState(index, name, value)}
-                          value={ postItems[index].url }
+                          onChange={({ target: { name, value } }) => this.updateItemsState(index, name, value)}
+                          value={postItems[index].url}
+                          hidden={postItems[index].type === 'text'}
+
                         />
 
                         <label htmlFor={`item-text-${index}`}>Text</label>
                         <textarea
-                          id={`item-text-${index}`} 
+                          id={`item-text-${index}`}
                           type="text"
                           name="text"
-                          onChange={({target: {name, value}}) => this.updateItemsState(index, name, value)}
-                          value={ postItems[index].text }
+                          onChange={({ target: { name, value } }) => this.updateItemsState(index, name, value)}
+                          value={postItems[index].text}
                         />
 
-                        <label htmlFor={`item-width-${index}`}>Largura</label>
+                        <label
+                          htmlFor={`item-width-${index}`}
+                          hidden={postItems[index].type === 'audio'}
+                        >
+                          Largura
+                        </label>
                         <input
-                          id={`item-width-${index}`} 
-                          type="text" 
+                          id={`item-width-${index}`}
+                          type="text"
                           className="display"
+                          placeholder="px"
                           name="width"
-                          onChange={({target: {name, value}}) => this.updateItemsState(index, name, value)}
-                          value={ postItems[index].width }
+                          onChange={({ target: { name, value } }) => this.updateItemsState(index, name, value)}
+                          value={postItems[index].width}
+                          hidden={postItems[index].type === 'audio'}
                         />
 
-                        <label htmlFor={`item-height-${index}`}>Altura</label>
+                        <label
+                          htmlFor={`item-height-${index}`}
+                          hidden={postItems[index].type === 'audio' || postItems[index].type === 'text'}
+                        >
+                          Altura
+                        </label>
                         <input
-                          id={`item-height-${index}`} 
-                          type="text" 
+                          id={`item-height-${index}`}
+                          type="text"
                           className="display"
+                          placeholder="px"
                           name="height"
-                          onChange={({target: {name, value}}) => this.updateItemsState(index, name, value)}
-                          value={ postItems[index].height }
+                          onChange={({ target: { name, value } }) => this.updateItemsState(index, name, value)}
+                          value={postItems[index].height}
+                          hidden={postItems[index].type === 'audio' || postItems[index].type === 'text'}
                         />
 
-                        <label htmlFor={`item-color-${index}`}>Cor</label>
+                        <label
+                          htmlFor={`item-color-text-${index}`}
+                          hidden={postItems[index].type !== 'text'}
+                        >
+                          Cor do texto
+                          </label>
                         <input
-                          id={`item-color-${index}`} 
-                          type="text" 
+                          id={`item-color-text-${index}`}
+                          type="text"
                           className="display"
-                          name="color"
-                          onChange={({target: {name, value}}) => this.updateItemsState(index, name, value)}
-                          value={ postItems[index].color }
+                          placeholder="rgb(r, g, b)"
+                          name="colorText"
+                          onChange={({ target: { name, value } }) => this.updateItemsState(index, name, value)}
+                          value={postItems[index].colorText}
+                          hidden={postItems[index].type !== 'text'}
                         />
 
-                        <button 
+                        <label
+                          htmlFor={`item-color-background-${index}`}
+                          hidden={postItems[index].type !== 'text'}
+                        >
+                          Cor de fundo
+                        </label>
+                        <input
+                          id={`item-color-background-${index}`}
+                          type="text"
+                          className="display"
+                          placeholder="rgb(r, g, b)"
+                          name="colorBackground"
+                          onChange={({ target: { name, value } }) => this.updateItemsState(index, name, value)}
+                          value={postItems[index].colorBackground}
+                          hidden={postItems[index].type !== 'text'}
+                        />
+
+                        <button
                           className="remove-button"
-                          onClick= { (event) => {
+                          onClick={(event) => {
                             event.preventDefault();
                             this.removeItem(index);
-                          } }
+                          }}
                         >
                           remover
                         </button>
@@ -203,10 +261,10 @@ class PostForm extends React.Component {
               </div>
               <button id="add-item" onClick={
                 (event) => {
-                  event.preventDefault(); 
+                  event.preventDefault();
                   this.newItem();
-                  }
                 }
+              }
               >
                 Adicionar conteúdo
               </button>
@@ -215,12 +273,12 @@ class PostForm extends React.Component {
 
           </div>
           <div className="buttons">
-            <button 
-              id="create" 
+            <button
+              id="create"
               type="submit"
               onClick={
                 (event) => {
-                  event.preventDefault(); 
+                  event.preventDefault();
                   this.props.handleSubmit(this.state);
                 }
               }
@@ -233,7 +291,7 @@ class PostForm extends React.Component {
         </form>
 
         <div id="preview-post">
-          
+
         </div>
       </div>
     );

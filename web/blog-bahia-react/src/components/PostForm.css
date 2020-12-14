@@ -50,7 +50,9 @@ button {
 }
 
 .item {
-  margin: 0 0 10px 0;
+  margin: 20px 0 10px 0;
+  display: flex;
+  align-items: center;
 }
 
 .item label {
@@ -67,4 +69,9 @@ button {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+
+.items-page {
+  display: flex;
+  flex-direction: column;
 }
