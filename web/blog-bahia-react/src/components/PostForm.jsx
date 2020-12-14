@@ -1,15 +1,18 @@
 import React from 'react';
+import PostContent from './PostContent';
+import Card from './Card';
 
 import './PostForm.css';
 
 class PostForm extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { ...props.post };
+    this.state = { preview: false, ...props.post };
     this.newItem = this.newItem.bind(this);
     this.updatePost = this.updatePost.bind(this);
     this.updateItemsState = this.updateItemsState.bind(this);
     this.removeItem = this.removeItem.bind(this);
+    this.previewPost = this.previewPost.bind(this);
 
   }
 
@@ -36,24 +39,33 @@ class PostForm extends React.Component {
   }
 
   updatePost(field, newValue) {
-    this.setState({ [field]: newValue });
+    this.setState({ [field]: newValue, preview: false });
   }
 
   updateItemsState(index, name, value) {
     const items = this.state.postItems;
     items[index][name] = value;
-    this.setState({ postItems: items });
+    this.setState({ postItems: items, preview: false });
   }
 
   removeItem(indexItem) {
     const items = this.state.postItems;
     const filterdItems = items.filter((item, index) => index !== indexItem);
-    this.setState({ postItems: filterdItems });
+    this.setState({ postItems: filterdItems, preview: false });
+  }
+
+  previewPost() {
+    return (
+      <div>
+        <Card cardContent={this.state} />
+        <PostContent post={this.state} />
+      </div>
+    )
   }
 
   render() {
     const items = this.state.postItems;
-    const { cardText, cardImg, cardColor, cardTextColor, title, postItems, colorPage } = this.state
+    const { cardText, cardImg, cardColor, cardTextColor, title, postItems, colorPage, preview } = this.state
     return (
       <div>
         <form>
@@ -135,7 +147,7 @@ class PostForm extends React.Component {
                           onChange={({ target: { name, value } }) => this.updateItemsState(index, name, value)}
                           value={type}
                         >
-                          <option hidden="true">Selecione</option>
+                          <option hidden={true}>Selecione</option>
                           <option value="audio">Áudio</option>
                           <option value="image">Imagem</option>
                           <option value="text">Texto</option>
@@ -149,7 +161,7 @@ class PostForm extends React.Component {
                           onChange={({ target: { name, value } }) => this.updateItemsState(index, name, value)}
                           value={position}
                         >
-                          <option hidden="true">Selecione</option>
+                          <option hidden={true}>Selecione</option>
                           <option value="left">Esquerda</option>
                           <option value="middle">Meio</option>
                           <option value="right">Direita</option>
@@ -288,13 +300,24 @@ class PostForm extends React.Component {
             >
               Criar
             </button>
-            <button id="preview" type="submit">Preview</button>
+            <button
+              id="preview"
+              type="submit"
+              onClick={
+                (event) => {
+                  event.preventDefault();
+                  this.setState({ preview: true })
+                }
+              }
+            >
+              Preview
+            </button>
           </div>
 
         </form>
 
         <div id="preview-post">
-
+          {preview ? this.previewPost() : ''}
         </div>
       </div>
     );

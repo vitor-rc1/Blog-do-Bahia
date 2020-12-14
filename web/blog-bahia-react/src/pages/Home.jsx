@@ -9,12 +9,18 @@ import exampleImg from '../images/img1.jpg'
 
 class Home extends React.Component {
   render() {
+    const cardExample = {
+      cardImg: exampleImg,
+      cardText:"Percebemos, cada vez mais, que a mobilidade dos capitais internacionais acarreta um processo de reformulação e modernização das condições inegavelmente apropriadas.",
+      cardTitle: "Title",
+      id: 1,
+    }
     return(
       <div className="home">
         <Header />
         <div className="cards">
-          <Card cardTitle="Title" cardImg={exampleImg} cardText="Percebemos, cada vez mais, que a mobilidade dos capitais internacionais acarreta um processo de reformulação e modernização das condições inegavelmente apropriadas."/>
-          <Card cardTitle="Other Title"/>
+          <Card cardContent={ cardExample } />
+          <Card cardContent={ cardExample } />
           <Card />
           <Card />
           <Card />

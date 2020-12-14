@@ -13,11 +13,6 @@
   height: fit-content;
 }
 
-.card:hover {
-  background: black;
-  color: white;
-}
-
 .card-title {
   text-align: center;
 }

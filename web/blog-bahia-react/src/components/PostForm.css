@@ -44,11 +44,6 @@ button {
   align-items: center;
 }
 
-#content-page {
-  width: 300px;
-  height: 200px;
-}
-
 .item {
   margin: 20px 0 10px 0;
   display: flex;
@@ -63,13 +58,6 @@ button {
   width: 60px;
 }
 
-#preview-post {
-  margin-top: 20px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
 
 .items-page {
   display: flex;
