@@ -9,19 +9,25 @@ class NewPost extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  handleSubmit(post) {
-    // this.setState({ shouldRedirect: true })
-    console.log(post)
-  }
+  async handleSubmit(post) {
+    const URL = 'http://localhost:3001/create';
+    await fetch(URL, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(post),
+    });
+}
 
-  render() {
-    if (this.state.shouldRedirect) {
+render() {
+  if (this.state.shouldRedirect) {
     return (<Redirect to="/" />);
-    }
-    return (
-      <PostForm handleSubmit= { this.handleSubmit } />
-    )
   }
+  return (
+    <PostForm handleSubmit={this.handleSubmit} />
+  )
+}
 }
 
 export default NewPost;

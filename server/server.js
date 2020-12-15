@@ -1,12 +1,15 @@
 const express = require('express');
+var cors = require('cors');
+
 const app = express();
-const port = 3000;
+const port = 3001;
 
 const { Client } = require('pg')
 
 app.use(express.json())
+app.use(cors())
 
-app.post('/crete', (req, res) => {
+app.post('/create', (req, res) => {
   console.log(req.body)
   res.send("Foi")
 })
