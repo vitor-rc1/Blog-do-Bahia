@@ -19,16 +19,17 @@ class NewPost extends React.Component {
       },
       body: JSON.stringify(post),
     });
-}
-
-render() {
-  if (this.state.shouldRedirect) {
-    return (<Redirect to="/" />);
+    this.setState({ shouldRedirect: true })
   }
-  return (
-    <PostForm handleSubmit={this.handleSubmit} />
-  )
-}
+
+  render() {
+    if (this.state.shouldRedirect) {
+      return (<Redirect to="/" />);
+    }
+    return (
+      <PostForm handleSubmit={this.handleSubmit} newPost={true} />
+    )
+  }
 }
 
 export default NewPost;

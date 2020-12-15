@@ -5,9 +5,9 @@ import Card from './Card';
 import './PostForm.css';
 
 class PostForm extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = { preview: false, ...props.post };
+  constructor() {
+    super();
+    this.state = { preview: false };
     this.newItem = this.newItem.bind(this);
     this.updatePost = this.updatePost.bind(this);
     this.updateItemsState = this.updateItemsState.bind(this);
@@ -63,6 +63,15 @@ class PostForm extends React.Component {
     )
   }
 
+  componentDidMount() {
+    this.propsToState(this.props.post)
+  }
+
+  propsToState(post) {
+    console.log(post)
+    this.setState({ ...post })
+  }
+
   render() {
     const items = this.state.postItems;
     const {
@@ -75,7 +84,8 @@ class PostForm extends React.Component {
       colorPage,
       preview,
       titleColor,
-      cardImgWidth } = this.state
+      cardImgWidth } = this.state;
+    const { newPost, editPost } = this.props;
     return (
       <div>
         <form>
@@ -324,9 +334,25 @@ class PostForm extends React.Component {
                   this.props.handleSubmit(this.state);
                 }
               }
+              hidden={!newPost}
             >
               Criar
             </button>
+
+            <button
+              id="update"
+              type="submit"
+              onClick={
+                (event) => {
+                  event.preventDefault();
+                  this.props.handleSubmit(this.state);
+                }
+              }
+              hidden={!editPost}
+            >
+              Atualizar
+            </button>
+
             <button
               id="preview"
               type="submit"
