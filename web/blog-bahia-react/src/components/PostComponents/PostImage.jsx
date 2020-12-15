@@ -12,9 +12,9 @@ class PostImage extends React.Component {
     )
   }
   render() {
-    const { url, text, width, height } = this.props.params;
+    const { url, text, width, height, colorText } = this.props.params;
     return (
-      <div className="post-image-component">
+      <div className="post-image-component" style={{color:`${colorText}`}}>
         <img
           src={url}
           alt={text}

@@ -12,9 +12,9 @@ class PostAudio extends React.Component {
     )
   }
   render() {
-    const { url, text } = this.props.params;
+    const { url, text, colorText } = this.props.params;
     return (
-      <div className="post-audio-component">
+      <div className="post-audio-component" style={{color:`${colorText}`}}>
         <audio controls
           className="post-audio-component-audio"
         >

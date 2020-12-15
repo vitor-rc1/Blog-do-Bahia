@@ -20,13 +20,13 @@ class PostContent extends React.Component {
   }
 
   render() {
-    const { title, postItems, colorPage } = this.state;
+    const { title, postItems, colorPage, titleColor } = this.state;
     return (
       <div 
         className="post" 
         style={{ backgroundColor: `${colorPage}`}}
       >
-        <h2 className="post-title">{title}</h2>
+        <h2 className="post-title" style={{ color: `${titleColor}`}}>{title}</h2>
         <div className="post-content">
           <div className="post-left">
             {postItems.map((item, index) => {

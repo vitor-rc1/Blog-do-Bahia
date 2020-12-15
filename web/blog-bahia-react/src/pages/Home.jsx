@@ -8,6 +8,10 @@ import exampleImg from '../images/img1.jpg'
 
 
 class Home extends React.Component {
+  constructor() {
+    super();
+    this.state = {posts: []}
+  }
   render() {
     const cardExample = {
       cardImg: exampleImg,
@@ -20,11 +24,6 @@ class Home extends React.Component {
         <Header />
         <div className="cards">
           <Card cardContent={ cardExample } />
-          <Card cardContent={ cardExample } />
-          <Card />
-          <Card />
-          <Card />
-          <Card />
         </div>
       </div>
     );

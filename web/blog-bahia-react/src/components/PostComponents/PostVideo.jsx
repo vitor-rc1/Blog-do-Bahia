@@ -12,9 +12,9 @@ class PostVideo extends React.Component {
     )
   }
   render() {
-    const { url, text, width, height } = this.props.params;
+    const { url, text, width, height, colorText } = this.props.params;
     return (
-      <div className="post-video-component">
+      <div className="post-video-component" style={{color:`${colorText}`}}>
         <iframe
           src={ url }
           title= { url }

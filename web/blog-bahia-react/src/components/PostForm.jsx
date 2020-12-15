@@ -65,7 +65,17 @@ class PostForm extends React.Component {
 
   render() {
     const items = this.state.postItems;
-    const { cardText, cardImg, cardColor, cardTextColor, title, postItems, colorPage, preview } = this.state
+    const {
+      cardText,
+      cardImg,
+      cardColor,
+      cardTextColor,
+      title,
+      postItems,
+      colorPage,
+      preview,
+      titleColor,
+      cardImgWidth } = this.state
     return (
       <div>
         <form>
@@ -89,6 +99,16 @@ class PostForm extends React.Component {
                 name="cardImg"
                 onChange={({ target: { name, value } }) => this.updatePost(name, value)}
                 value={cardImg}
+              />
+
+              <label htmlFor="card-img">Tamanho da imagem do cartão</label>
+              <input
+                type="text"
+                id="card-img-width"
+                placeholder="px"
+                name="cardImgWidth"
+                onChange={({ target: { name, value } }) => this.updatePost(name, value)}
+                value={cardImgWidth}
               />
 
               <label htmlFor="card-color">Cor do cartão</label>
@@ -123,6 +143,15 @@ class PostForm extends React.Component {
                   value={title}
                 />
 
+                <label htmlFor="post-title-color">Cor do titulo</label>
+                <input
+                  type="text"
+                  id="post-title-color"
+                  placeholder="rgb(r, g, b)"
+                  name="titleColor"
+                  onChange={({ target: { name, value } }) => this.updatePost(name, value)}
+                  value={titleColor}
+                />
 
                 <label htmlFor="color-page">Cor de fundo do post</label>
                 <input
@@ -228,7 +257,6 @@ class PostForm extends React.Component {
 
                         <label
                           htmlFor={`item-color-text-${index}`}
-                          hidden={type !== 'text'}
                         >
                           Cor do texto
                           </label>
@@ -240,7 +268,6 @@ class PostForm extends React.Component {
                           name="colorText"
                           onChange={({ target: { name, value } }) => this.updateItemsState(index, name, value)}
                           value={colorText}
-                          hidden={type !== 'text'}
                         />
 
                         <label

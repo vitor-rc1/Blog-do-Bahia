@@ -58,8 +58,11 @@ button {
   width: 60px;
 }
 
-
 .items-page {
   display: flex;
   flex-direction: column;
+}
+
+.buttons {
+  margin-bottom: 10px;
 }
