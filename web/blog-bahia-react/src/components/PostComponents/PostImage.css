@@ -2,8 +2,9 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 10px 0;
+  padding: 10px 0;
 }
 .post-image-component-text {
-  margin: 3px;
+  padding: 10px;
+  margin: 0;
 }
