@@ -5,35 +5,15 @@
   flex-direction: column;
 }
 .title {
-  border-radius: 10px;
+  /* border-radius: 10px; */
   margin: 0 auto;
-  width: 300px;
-  height: fit-content;
+  /* width: 300px; */
+  /* height: fit-content; */
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
   transition: color 0.2s;
-  color: white;
+  /* color: white; */
 
-}
-
-.title:hover {
-  background: white;
-  color: black;
-}
-
-.about {
-  text-decoration: none;
-  font-weight: bold;
-  font-size: 20px;
-  color: white;
-  margin: 10px 0;
-  padding: 4px;
-  border-radius: 2px;
-}
-.about:hover {
-
-  background: white;
-  color: black;
 }

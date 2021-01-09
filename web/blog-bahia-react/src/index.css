@@ -2,9 +2,12 @@ html, body {
   font-family: sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-image: url("./images/bg1.jpg");
+  background-image: url("./images/fundo.jpeg");
+  background-size: 100%;
+  background-repeat: no-repeat;
   margin: 0;
   height: 100%;
+  width: 100%;
 }
 
 body {

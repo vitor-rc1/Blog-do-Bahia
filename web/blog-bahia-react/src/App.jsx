@@ -4,6 +4,7 @@ import About from './pages/About';
 import Post from './pages/Post';
 import EditPost from './pages/EditPost';
 import NewPost from './pages/NewPost';
+import SideBar from './components/SideBar';
 
 import './App.css';
 
@@ -12,9 +13,30 @@ function App() {
   return (
     <BrowserRouter>
       <Switch>
-        <Route exact path="/" component={Home} />
-        <Route exact path="/about" component={About} />
-        <Route exact path="/:id" component={Post} />
+        <Route exact path="/" render={(props) => {
+          return (
+            <div className="app-content-side">
+              <Home {...props} /> 
+              <SideBar />
+            </div>
+          )
+        }} />
+        <Route exact path="/about" render={(props) => {
+          return (
+            <div className="app-content-side">
+              <About {...props} /> 
+              <SideBar />
+            </div>
+          )
+        }} />
+        <Route exact path="/:id" render={(props) => {
+          return (
+            <div className="app-content-side">
+              <Post {...props} /> 
+              <SideBar />
+            </div>
+          )
+        }} />
         <Route exact path="/post/:id/edit" component={EditPost} />
         <Route exact path="/post/new" component={NewPost} />
       </Switch>

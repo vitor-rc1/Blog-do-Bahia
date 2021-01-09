@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 
 import './Header.css'
 
@@ -8,9 +7,8 @@ class Header extends React.Component {
     return (
       <div className="header">
         <div className="title">
-          <h1>Bahia  Blog</h1>
+          <h1>Escrever esquecer</h1>
         </div>
-        <Link to="/about" className="about">Sobre</Link>
       </div>
     );
   }

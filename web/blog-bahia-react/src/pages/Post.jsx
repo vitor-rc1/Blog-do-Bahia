@@ -1,6 +1,7 @@
 import React from 'react';
-import PostExample from '../services/PostExample';
 import PostContent from '../components/PostContent';
+
+import './Post.css';
 
 class Post extends React.Component {
   constructor() {
