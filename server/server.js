@@ -23,8 +23,9 @@ pool.query('CREATE TABLE IF NOT EXISTS posts (id SERIAL PRIMARY KEY, post jsonb)
   console.log(error)
 })
 
+//POSTS
 // create post
-app.post('/create', (req, res) => {
+app.post('post/create', (req, res) => {
   pool.query(`INSERT INTO posts(post) VALUES('${JSON.stringify(req.body)}')`, (error) => {
     if (error) {
       console.error(error);
@@ -48,7 +49,7 @@ app.get('/posts', (req, res) => {
 })
 
 // acess especific post
-app.get('/:id/post', (req, res) => {
+app.get('post/:id', (req, res) => {
   pool.query(`SELECT * FROM posts WHERE id=${req.params.id}`, (error, result) => {
     if (error) {
       console.error(error);
@@ -60,7 +61,7 @@ app.get('/:id/post', (req, res) => {
 })
 
 // update specific post
-app.put('/:id/update', (req, res) => {
+app.put('post/:id/update', (req, res) => {
   pool.query(`UPDATE posts SET post='${JSON.stringify(req.body)}' WHERE id=${req.params.id}`, (error, result) => {
     if (error) {
       console.error(error);
@@ -72,7 +73,7 @@ app.put('/:id/update', (req, res) => {
 
 
 // delete especific post
-app.delete('/:id/delete', (req, res) => {
+app.delete('post/:id/delete', (req, res) => {
   pool.query(`DELETE FROM posts WHERE id=${req.params.id}`, (error, result) => {
     if (error) {
       console.error(error);
@@ -80,6 +81,11 @@ app.delete('/:id/delete', (req, res) => {
     }
     res.send("Delete successful")
   })
+})
+
+//SECTIONS
+pool.query('CREATE TABLE IF NOT EXISTS sections (id SERIAL PRIMARY KEY, title text, img text, imgSize integer, about text, indexText text)', (error) => {
+  console.log(error)
 })
 
 app.listen(port, () => {
