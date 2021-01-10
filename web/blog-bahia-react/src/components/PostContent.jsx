@@ -20,7 +20,7 @@ class PostContent extends React.Component {
       return (
         <div 
           className="post" 
-          style={{ backgroundColor: `${colorPage}`}}
+          // style={{ backgroundColor: `${colorPage}`}}
         >
           <h2 className="post-title" style={{ color: `${titleColor}`}}>{title}</h2>
           <div className="post-content">

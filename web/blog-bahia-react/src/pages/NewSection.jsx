@@ -1,5 +1,5 @@
 import React from 'react';
-import PostForm from '../components/PostForm';
+import SectionForm from '../components/SectionForm';
 import { Redirect } from 'react-router-dom';
 
 class NewPost extends React.Component {
@@ -9,15 +9,15 @@ class NewPost extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  async handleSubmit(post) {
-    console.log(post)
-    const URL = 'http://localhost:3001/post/create';
+  async handleSubmit(section) {
+    console.log(section)
+    const URL = 'http://localhost:3001/section/create';
     await fetch(URL, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify(post),
+      body: JSON.stringify(section),
     });
     this.setState({ shouldRedirect: true })
   }
@@ -27,7 +27,7 @@ class NewPost extends React.Component {
       return (<Redirect to="/" />);
     }
     return (
-      <PostForm handleSubmit={this.handleSubmit} newPost={true} />
+      <SectionForm handleSubmit={this.handleSubmit} newSection={true} />
     )
   }
 }

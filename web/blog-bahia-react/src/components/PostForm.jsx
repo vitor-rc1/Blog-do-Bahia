@@ -82,6 +82,7 @@ class PostForm extends React.Component {
       title,
       postItems,
       colorPage,
+      section,
       preview,
       titleColor,
       cardImgWidth } = this.state;
@@ -144,6 +145,15 @@ class PostForm extends React.Component {
               <p>Conteúdo da página</p>
 
               <div className="items-page">
+              <label htmlFor="post-section">Seção</label>
+                <input
+                  type="text"
+                  id="post-section"
+                  name="section"
+                  onChange={({ target: { name, value } }) => this.updatePost(name, value)}
+                  value={section}
+                />
+
                 <label htmlFor="post-title">Titulo</label>
                 <input
                   type="text"
@@ -163,7 +173,7 @@ class PostForm extends React.Component {
                   value={titleColor}
                 />
 
-                <label htmlFor="color-page">Cor de fundo do post</label>
+                {/* <label htmlFor="color-page">Cor de fundo do post</label>
                 <input
                   type="text"
                   id="color-page"
@@ -171,7 +181,7 @@ class PostForm extends React.Component {
                   name="colorPage"
                   onChange={({ target: { name, value } }) => this.updatePost(name, value)}
                   value={colorPage}
-                />
+                /> */}
 
 
                 <div>
@@ -193,7 +203,7 @@ class PostForm extends React.Component {
                           <option value="video">Vídeo</option>
                         </select>
 
-                        <label htmlFor={`item-${index}`}>Posição</label>
+                        {/* <label htmlFor={`item-${index}`}>Posição</label>
                         <select
                           id={`item-position-${index}`}
                           name="position"
@@ -204,7 +214,7 @@ class PostForm extends React.Component {
                           <option value="left">Esquerda</option>
                           <option value="middle">Meio</option>
                           <option value="right">Direita</option>
-                        </select>
+                        </select> */}
 
                         <label
                           htmlFor={`item-URL-${index}`}

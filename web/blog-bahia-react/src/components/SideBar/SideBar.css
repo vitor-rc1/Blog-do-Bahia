@@ -1,0 +1,35 @@
+.side-bar-component {
+  background-color: #176E8C;
+  height: fit-content;
+  position: absolute;
+  right: 0;
+  top: 0;
+  display: flex;
+  align-items: center;
+  margin-top: 30px;
+}
+
+.side-bar-links {
+  padding-right: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+.side-bar-link {
+  margin: 5px;
+}
+
+.fadeOut{
+  opacity:0;
+  width:0;
+  height:0;
+  transition: width 0.5s;
+
+}
+.fadeIn{
+  opacity:1;
+  width: 150px;
+  height:fit-content;
+  transition: width 0.5s;
+
+}
