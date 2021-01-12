@@ -10,7 +10,7 @@ class EditPost extends React.Component {
   }
 
   async handleSubmit(post) {
-    const URL = `http://localhost:3001/post/${this.state.id}/update`;
+    const URL = `http://localhost:3001/post/update/${this.state.id}`;
     await fetch(URL, {
       method: 'PUT',
       headers: {
@@ -25,7 +25,7 @@ class EditPost extends React.Component {
     this.loadPost(this.props.match.params.id);
   }
   async loadPost(idPost) {
-    const URL = `http://localhost:3001/post/${idPost}`;
+    const URL = `http://localhost:3001/post/load/${idPost}`;
     const response = await fetch(URL);
     const [{id, post}] = await response.json();
     this.setState({ post, id }, () => {

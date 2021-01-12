@@ -14,7 +14,7 @@ class Post extends React.Component {
     this.loadPost(this.props.match.params.id);
   }
   async loadPost(idPost) {
-    const URL = `http://localhost:3001/post/${idPost}`;
+    const URL = `http://localhost:3001/post/load/${idPost}`;
     const response = await fetch(URL);
     const [{post}] = await response.json();
     this.setState({ post });

@@ -10,7 +10,7 @@ class EditSection extends React.Component {
   }
 
   async handleSubmit(section) {
-    const URL = `http://localhost:3001/section/${this.state.id}/update`;
+    const URL = `http://localhost:3001/section/update/${this.state.id}`;
     await fetch(URL, {
       method: 'PUT',
       headers: {
@@ -25,7 +25,7 @@ class EditSection extends React.Component {
     this.loadPost(this.props.match.params.id);
   }
   async loadPost(idPost) {
-    const URL = `http://localhost:3001/${idPost}/section`;
+    const URL = `http://localhost:3001/section/load/${idPost}`;
     const response = await fetch(URL);
     const [{id, section}] = await response.json();
     this.setState({ section, id }, () => {
@@ -38,7 +38,7 @@ class EditSection extends React.Component {
     return (<Redirect to="/" />);
     }else if(this.state.shouldLoading) {
     return (
-      <SectionForm handleSubmit={ this.handleSubmit } editSection={true} post={this.state.post}/>
+      <SectionForm handleSubmit={ this.handleSubmit } editSection={true} post={this.state.section}/>
     )}
     return '';
   }
