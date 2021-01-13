@@ -10,14 +10,22 @@ class Card extends React.Component {
     this.state = {...props.cardContent }
   }
   render() {
-    const { id, cardImg, cardText, cardColor, cardTextColor, title, cardImgWidth} = this.state;
+    const { 
+      id, 
+      cardimg: cardImg, 
+      cardtext: cardText, 
+      cardcolor: cardColor, 
+      cardtextcolor:cardTextColor, 
+      cardtitle: cardTitle, 
+      cardimgwidth: cardImgWidth 
+    } = this.state;
     return(
       <Link 
         className="card" 
         to={`/${id}`} 
         style={{color:`${cardTextColor}`, backgroundColor:`${cardColor}`}}
       >
-        {title ? <h2 className="card-title"> {title} </h2> : ''}
+        {cardTitle ? <h2 className="card-title"> {cardTitle} </h2> : ''}
         {cardText ? <p className="card-text">{cardText}</p> : ''}
         {cardImg ? <img src={cardImg} alt="example" className="card-img" style={{width:`${cardImgWidth}px`}} /> : ''}
       </Link>

@@ -10,8 +10,7 @@ class NewPost extends React.Component {
   }
 
   async handleSubmit(post) {
-    console.log(post)
-    const URL = 'http://localhost:3001/post/create';
+    const URL = 'http://localhost:3002/post/create';
     await fetch(URL, {
       method: 'POST',
       headers: {

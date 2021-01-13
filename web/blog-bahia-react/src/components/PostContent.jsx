@@ -15,8 +15,8 @@ class PostContent extends React.Component {
   }
 
   render() {
-    const { title, postItems, colorPage, titleColor } = this.props.post;
-    console.log(title, titleColor)
+    const { title, postitems: {postItems}, colorPage, titlecolor: titleColor } = this.props.post;
+    console.log(title)
     if (postItems || title) {
       return (
         <div

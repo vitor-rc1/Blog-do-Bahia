@@ -7,7 +7,19 @@ import './PostForm.css';
 class PostForm extends React.Component {
   constructor() {
     super();
-    this.state = { preview: false };
+    this.state = {
+      cardText: '',
+      cardImg: '',
+      cardColor: '',
+      cardImgWidth: '',
+      cardTextColor: '',
+      cardTitle: '',
+      title: '',
+      titleColor: '',
+      section: '',
+      postItems: [],
+      preview: false
+    };
     this.newItem = this.newItem.bind(this);
     this.updatePost = this.updatePost.bind(this);
     this.updateItemsState = this.updateItemsState.bind(this);
@@ -26,6 +38,8 @@ class PostForm extends React.Component {
       height: '',
       colorBackground: '',
       colorText: '',
+      leftPos: '',
+      topPos: '',
     }
     if (this.state.postItems) {
       this.setState({
@@ -78,14 +92,15 @@ class PostForm extends React.Component {
       cardText,
       cardImg,
       cardColor,
+      cardImgWidth,
       cardTextColor,
+      cardTitle,
       title,
-      postItems,
-      colorPage,
+      titleColor,
       section,
       preview,
-      titleColor,
-      cardImgWidth } = this.state;
+      postItems,
+    } = this.state;
     const { newPost, editPost } = this.props;
     return (
       <div>
@@ -93,59 +108,73 @@ class PostForm extends React.Component {
           <h2 className="title">Criar post</h2>
           <div className="container">
             <div className="page-content">
-              <label htmlFor="card-text">Texto do cartão</label>
-              <textarea
-                type="text"
-                id="card-text"
-                placeholder="Digite seu texto aqui"
-                name="cardText"
-                onChange={({ target: { name, value } }) => this.updatePost(name, value)}
-                value={cardText}
-              />
-              <label htmlFor="card-img">Imagem do cartão</label>
-              <input
-                type="text"
-                id="card-img"
-                placeholder="URL"
-                name="cardImg"
-                onChange={({ target: { name, value } }) => this.updatePost(name, value)}
-                value={cardImg}
-              />
+              <fieldset className="card-content">
+                <label htmlFor="card-text">Texto do cartão</label>
+                <textarea
+                  type="text"
+                  id="card-text"
+                  placeholder="Digite seu texto aqui"
+                  name="cardText"
+                  onChange={({ target: { name, value } }) => this.updatePost(name, value)}
+                  value={cardText}
+                />
 
-              <label htmlFor="card-img">Tamanho da imagem do cartão</label>
-              <input
-                type="text"
-                id="card-img-width"
-                placeholder="px"
-                name="cardImgWidth"
-                onChange={({ target: { name, value } }) => this.updatePost(name, value)}
-                value={cardImgWidth}
-              />
+                <label htmlFor="card-title">Título do cartão</label>
+                <input
+                  type="text"
+                  id="card-title"
+                  placeholder="URL"
+                  name="cardTitle"
+                  onChange={({ target: { name, value } }) => this.updatePost(name, value)}
+                  value={cardTitle}
+                />
 
-              <label htmlFor="card-color">Cor do cartão</label>
-              <input
-                type="text"
-                id="card-color"
-                placeholder="rgb(r, g, b)"
-                name="cardColor"
-                onChange={({ target: { name, value } }) => this.updatePost(name, value)}
-                value={cardColor}
-              />
+                <label htmlFor="card-img">Imagem do cartão</label>
+                <input
+                  type="text"
+                  id="card-img"
+                  placeholder="URL"
+                  name="cardImg"
+                  onChange={({ target: { name, value } }) => this.updatePost(name, value)}
+                  value={cardImg}
+                />
 
-              <label htmlFor="card-color">Cor do texto do cartão</label>
-              <input
-                type="text"
-                id="card-text-color"
-                placeholder="rgb(r, g, b)"
-                name="cardTextColor"
-                onChange={({ target: { name, value } }) => this.updatePost(name, value)}
-                value={cardTextColor}
-              />
+                <label htmlFor="card-img">Tamanho da imagem do cartão</label>
+                <input
+                  type="text"
+                  id="card-img-width"
+                  placeholder="px"
+                  name="cardImgWidth"
+                  onChange={({ target: { name, value } }) => this.updatePost(name, value)}
+                  value={cardImgWidth}
+                />
 
-              <p>Conteúdo da página</p>
+                <label htmlFor="card-color">Cor do cartão</label>
+                <input
+                  type="text"
+                  id="card-color"
+                  placeholder="rgb(r, g, b)"
+                  name="cardColor"
+                  onChange={({ target: { name, value } }) => this.updatePost(name, value)}
+                  value={cardColor}
+                />
 
-              <div className="items-page">
-              <label htmlFor="post-section">Seção</label>
+                <label htmlFor="card-color">Cor do texto do cartão</label>
+                <input
+                  type="text"
+                  id="card-text-color"
+                  placeholder="rgb(r, g, b)"
+                  name="cardTextColor"
+                  onChange={({ target: { name, value } }) => this.updatePost(name, value)}
+                  value={cardTextColor}
+                />
+
+              </fieldset>
+
+
+              <fieldset className="items-page">
+                <p>Conteúdo da página</p>
+                <label htmlFor="post-section">Seção</label>
                 <input
                   type="text"
                   id="post-section"
@@ -186,7 +215,18 @@ class PostForm extends React.Component {
 
                 <div>
                   {items ? items.map((item, index) => {
-                    const { type, position, url, text, width, height, colorBackground, colorText } = postItems[index];
+                    const { 
+                      type, 
+                      url, 
+                      text, 
+                      colorText,
+                      colorBackground, 
+                      height, 
+                      width, 
+                      leftPos, 
+                      topPos,
+                      position, 
+                    } = postItems[index];
                     return (
                       <div className="item" key={index}>
                         <label htmlFor={`item-${index}`}>Tipo</label>
@@ -276,6 +316,36 @@ class PostForm extends React.Component {
                         />
 
                         <label
+                          htmlFor={`item-top-${index}`}
+                        >
+                          Pos Y
+                        </label>
+                        <input
+                          id={`item-top-${index}`}
+                          type="text"
+                          className="display"
+                          placeholder="px"
+                          name="topPos"
+                          onChange={({ target: { name, value } }) => this.updateItemsState(index, name, value)}
+                          value={topPos}
+                        />
+
+                        <label
+                          htmlFor={`item-top-${index}`}
+                        >
+                          Pos X
+                        </label>
+                        <input
+                          id={`item-left-${index}`}
+                          type="text"
+                          className="display"
+                          placeholder="px"
+                          name="leftPos"
+                          onChange={({ target: { name, value } }) => this.updateItemsState(index, name, value)}
+                          value={leftPos}
+                        />
+
+                        <label
                           htmlFor={`item-color-text-${index}`}
                         >
                           Cor do texto
@@ -320,7 +390,7 @@ class PostForm extends React.Component {
                     )
                   }) : <p>Adicione algum item</p>}
                 </div>
-              </div>
+              </fieldset>
               <button id="add-item" onClick={
                 (event) => {
                   event.preventDefault();

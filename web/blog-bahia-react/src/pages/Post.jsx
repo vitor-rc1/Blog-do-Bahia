@@ -3,10 +3,12 @@ import PostContent from '../components/PostContent';
 
 import './Post.css';
 
+import { getPost } from '../services/api';
+
 class Post extends React.Component {
   constructor() {
     super();
-    this.state = {post: {}};
+    this.state = {post: {}, shouldLoading: false};
     this.loadPost = this.loadPost.bind(this);
   }
 
@@ -14,13 +16,20 @@ class Post extends React.Component {
     this.loadPost(this.props.match.params.id);
   }
   async loadPost(idPost) {
-    const URL = `http://localhost:3001/post/load/${idPost}`;
-    const response = await fetch(URL);
-    const [{post}] = await response.json();
+    const [post] = await getPost(idPost);
+    console.log(post)
     this.setState({ post });
+    this.setState({ post }, () => {
+      this.setState({ shouldLoading: true })
+    });
   }
 
   render() {
+    const { shouldLoading } = this.state;
+    if (!shouldLoading) {
+      return '';
+    }
+    
     return (
       <PostContent post={this.state.post} />
     )

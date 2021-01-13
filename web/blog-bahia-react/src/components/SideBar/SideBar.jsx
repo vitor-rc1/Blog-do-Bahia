@@ -32,9 +32,9 @@ class SideBar extends React.Component {
             <div
               className={`side-bar-links ${isOpen ?'fadeIn':'fadeOut'}`}
             >
-              <div className="side-bar-link">Home</div>
-              <div className="side-bar-link">About</div>
-              <div className="side-bar-link">Contact</div>
+              <div hidden={!isOpen} className="side-bar-link">Home</div>
+              <div hidden={!isOpen} className="side-bar-link">About</div>
+              <div hidden={!isOpen} className="side-bar-link">Contact</div>
             </div>
       </div >
     )

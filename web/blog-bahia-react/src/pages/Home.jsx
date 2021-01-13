@@ -4,6 +4,9 @@ import Card from '../components/Card';
 
 import './Home.css';
 
+import {getPosts} from '../services/api';
+
+
 class Home extends React.Component {
   constructor() {
     super();
@@ -14,9 +17,8 @@ class Home extends React.Component {
     this.loadPosts();
   }
   async loadPosts() {
-    const URL = 'http://localhost:3001/posts';
-    const response = await fetch(URL);
-    const posts = await response.json();
+    const posts = await getPosts();
+    console.log(posts)
     this.setState({ posts });
   }
   render() {
@@ -25,10 +27,9 @@ class Home extends React.Component {
       <div className="home">
         <Header />
         <div className="cards">
-          { posts.map(({ id, post}) => {
-            const objectAux = {...post, id }
+          { posts.map((card) => {
             return (
-              <Card cardContent={ objectAux } key={id} />
+              <Card cardContent={ card } key={card.id} />
             )
           })}
         </div>

@@ -1,39 +1,38 @@
 const posts = [
   {
     id: 0,
-    card: {
-      text: '',
-      img: '',
-      imgSize: 300,
-      backgroundColor: 'white',
-      fontColor: 'black',
-    },
-    title: {
-      text: '',
-      color: '',
-    },
+    cardText: '',
+    cardImg: '',
+    cardColor: 'white',
+    cardImgWidth: 300,
+    cardTextColor: 'black',
+    cardTitle: '',
+    title: '',
+    titleColor: '',
     section: '',
-    postContent: [
+    postItems: [
       {
         type: '',
         url: '',
         text: '',
-        fontColor: '',
-        backgroundColor: 'white',
+        colorText: '',
+        colorBackground: 'white',
         height: 200,
         widht: 200,
+        leftPos: 0,
+        topPos: 0,
       }
     ],
   },
 ]
 
 const sections = [
-    {
-      id: 0,
-      title,
-      img: '',
-      imgSize: 200,
-      about: '',
-      indexText: '',
-    }
-  ]
+  {
+    id: 0,
+    title: '',
+    img: '',
+    imgSize: 200,
+    about: '',
+    indexText: '',
+  }
+]
