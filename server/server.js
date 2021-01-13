@@ -2,7 +2,7 @@ const express = require('express');
 var cors = require('cors');
 
 const app = express();
-const port = 3001;
+const port = 3002;
 
 const { Pool } = require('pg')
 
@@ -19,26 +19,81 @@ const pool = new Pool({
 })
 
 // create table
-pool.query('CREATE TABLE IF NOT EXISTS posts (id SERIAL PRIMARY KEY, post jsonb)', (error) => {
-  console.log(error)
-})
+const postQuery = `
+CREATE TABLE IF NOT EXISTS posts (
+  id SERIAL PRIMARY KEY, 
+  cardText text, 
+  cardImg text, 
+  cardColor text, 
+  cardImgWidth text, 
+  cardTextColor text, 
+  cardTitle text, 
+  title text,
+  titleColor text,
+  section text, 
+  postItems jsonb
+  )
+`
+pool.query(postQuery
+  , (error) => {
+    console.log(error);
+  })
 
 //POSTS
 // create post
 app.post('/post/create', (req, res) => {
-  pool.query(`INSERT INTO posts(post) VALUES('${JSON.stringify(req.body)}')`, (error) => {
+  console.log(req.body)
+  const {
+    cardText,
+    cardImg,
+    cardColor,
+    cardImgWidth,
+    cardTextColor,
+    cardTitle,
+    title,
+    titleColor,
+    section,
+    postItems
+  } = req.body;
+  const post = {postItems};
+  const queryInsert = `
+  INSERT INTO posts (
+    cardText,
+    cardImg,
+    cardColor,
+    cardImgWidth,
+    cardTextColor,
+    cardTitle,
+    title,
+    titleColor,
+    section,
+    postItems
+  ) VALUES(
+    '${cardText}',
+    '${cardImg}',
+    '${cardColor}',
+    '${cardImgWidth}',
+    '${cardTextColor}',
+    '${cardTitle}',
+    '${title}',
+    '${titleColor}',
+    '${section}',
+    '${JSON.stringify(post)}'
+  )
+  `
+  pool.query(queryInsert, (error) => {
     if (error) {
       console.error(error);
       return;
     }
-    console.log('Data insert successful');
+    console.log('Data insert successful!!');
   })
   res.send("Data insert successful")
 })
 
 // acess all posts
 app.get('/posts', (req, res) => {
-  pool.query('SELECT * FROM posts', (error, result) => {
+  pool.query('SELECT id, cardtext, cardimg, cardcolor, cardimgwidth, cardtextcolor, cardtitle FROM posts', (error, result) => {
     if (error) {
       console.error(error);
       return;
@@ -51,7 +106,7 @@ app.get('/posts', (req, res) => {
 // acess especific post
 app.get('/post/load/:id', (req, res) => {
   console.log(req)
-  pool.query(`SELECT * FROM posts WHERE id=${req.params.id}`, (error, result) => {
+  pool.query(`SELECT title, titlecolor, postitems FROM posts WHERE id=${req.params.id}`, (error, result) => {
     if (error) {
       console.error(error);
       return;
@@ -85,9 +140,12 @@ app.delete('/post/delete/:id', (req, res) => {
 })
 
 //SECTIONS
-pool.query('CREATE TABLE IF NOT EXISTS sections (id SERIAL PRIMARY KEY, title text, img text, imgSize integer, about text, indexText text)', (error) => {
-  console.log(error)
-})
+pool.query(
+  'CREATE TABLE IF NOT EXISTS sections (id SERIAL PRIMARY KEY, title text, img text, imgSize integer, about text, indexText text)',
+  (error) => {
+    console.log(error)
+  }
+)
 
 // create section
 app.post('/section/create', (req, res) => {
