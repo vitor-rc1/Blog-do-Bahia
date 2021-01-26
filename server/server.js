@@ -93,7 +93,12 @@ app.post('/post/create', (req, res) => {
 
 // acess all posts
 app.get('/posts', (req, res) => {
-  pool.query('SELECT id, cardtext, cardimg, cardcolor, cardimgwidth, cardtextcolor, cardtitle FROM posts', (error, result) => {
+  const query = `
+  SELECT id, cardtext, cardimg, cardcolor, cardimgwidth, cardtextcolor, cardtitle 
+  FROM posts
+  ORDER BY id DESC
+  `
+  pool.query(query, (error, result) => {
     if (error) {
       console.error(error);
       return;
@@ -106,7 +111,7 @@ app.get('/posts', (req, res) => {
 // acess especific post
 app.get('/post/load/:id', (req, res) => {
   console.log(req)
-  pool.query(`SELECT title, titlecolor, postitems FROM posts WHERE id=${req.params.id}`, (error, result) => {
+  pool.query(`SELECT * FROM posts WHERE id=${req.params.id}`, (error, result) => {
     if (error) {
       console.error(error);
       return;
@@ -118,7 +123,36 @@ app.get('/post/load/:id', (req, res) => {
 
 // update specific post
 app.put('/post/update/:id', (req, res) => {
-  pool.query(`UPDATE posts SET post='${JSON.stringify(req.body)}' WHERE id=${req.params.id}`, (error, result) => {
+  const {
+    cardText,
+    cardImg,
+    cardColor,
+    cardImgWidth,
+    cardTextColor,
+    cardTitle,
+    title,
+    titleColor,
+    section,
+    postItems
+  } = req.body;
+  const post = {postItems};
+  const queryUpdate = `
+  UPDATE posts
+  SET 
+    cardText = '${cardText}',
+    cardImg = '${cardImg}',
+    cardColor = '${cardColor}',
+    cardImgWidth = '${cardImgWidth}',
+    cardTextColor = '${cardTextColor}',
+    cardTitle = '${cardTitle}',
+    title = '${title}',
+    titleColor = '${titleColor}',
+    section = '${section}',
+    postItems = '${JSON.stringify(post)}'
+  
+  WHERE id=${req.params.id}
+  `
+  pool.query(queryUpdate, (error, result) => {
     if (error) {
       console.error(error);
       return;
@@ -208,13 +242,13 @@ app.put('/section/update/:id', (req, res) => {
 // delete especific section
 app.delete('/section/delete/:id', (req, res) => {
   console.log(req.body)
-  // pool.query(`DELETE FROM posts WHERE id=${req.params.id}`, (error, result) => {
-  //   if (error) {
-  //     console.error(error);
-  //     return;
-  //   }
-  //   res.send("Delete successful")
-  // })
+  pool.query(`DELETE FROM sections WHERE id=${req.params.id}`, (error, result) => {
+    if (error) {
+      console.error(error);
+      return;
+    }
+    res.send("Delete successful")
+  })
 })
 
 app.listen(port, () => {
