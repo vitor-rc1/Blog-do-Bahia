@@ -201,7 +201,7 @@ app.post('/section/create', (req, res) => {
 // acess all sections
 app.get('/sections', (req, res) => {
   console.log(req.body)
-  pool.query('SELECT * FROM sections', (error, result) => {
+  pool.query('SELECT id, title FROM sections ORDER BY id', (error, result) => {
     if (error) {
       console.error(error);
       return;
@@ -228,7 +228,7 @@ app.put('/section/update/:id', (req, res) => {
   console.log(req.body)
   const { title, img, imgSize, about, index } = req.body
 
-  pool.query(`UPDATE section SET title='${title}' img='${img}' imgSize=${imgSize} about='${about}' index='${index}' 
+  pool.query(`UPDATE sections SET title='${title}', img='${img}', imgSize=${imgSize}, about='${about}', indexText='${index}' 
   WHERE id=${req.params.id}`, (error, result) => {
     if (error) {
       console.error(error);
