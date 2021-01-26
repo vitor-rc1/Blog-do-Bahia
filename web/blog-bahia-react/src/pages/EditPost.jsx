@@ -1,6 +1,7 @@
 import React from 'react';
 import PostForm from '../components/PostForm';
 import { Redirect } from 'react-router-dom';
+import { getPost, updatePost } from '../services/api';
 
 class EditPost extends React.Component {
   constructor() {
@@ -10,25 +11,18 @@ class EditPost extends React.Component {
   }
 
   async handleSubmit(post) {
-    const URL = `http://localhost:3001/post/update/${this.state.id}`;
-    await fetch(URL, {
-      method: 'PUT',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(post),
-    });
+    console.log(post)
+    updatePost(post)
     this.setState({ shouldRedirect: true })
   }
 
   componentDidMount() {
     this.loadPost(this.props.match.params.id);
   }
+  
   async loadPost(idPost) {
-    const URL = `http://localhost:3001/post/load/${idPost}`;
-    const response = await fetch(URL);
-    const [{id, post}] = await response.json();
-    this.setState({ post, id }, () => {
+    const data = await getPost(idPost);
+    this.setState({ data }, () => {
       this.setState({ shouldLoading: true })
     });
   }
@@ -38,7 +32,7 @@ class EditPost extends React.Component {
     return (<Redirect to="/" />);
     }else if(this.state.shouldLoading) {
     return (
-      <PostForm handleSubmit={ this.handleSubmit } editPost={true} post={this.state.post}/>
+      <PostForm handleSubmit={ this.handleSubmit } editPost={true} post={this.state.data[0]}/>
     )}
     return '';
   }

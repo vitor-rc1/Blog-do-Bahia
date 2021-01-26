@@ -1,6 +1,7 @@
 import React from 'react';
 import PostForm from '../components/PostForm';
 import { Redirect } from 'react-router-dom';
+import { newPost } from '../services/api';
 
 class NewPost extends React.Component {
   constructor() {
@@ -10,14 +11,7 @@ class NewPost extends React.Component {
   }
 
   async handleSubmit(post) {
-    const URL = 'http://localhost:3002/post/create';
-    await fetch(URL, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(post),
-    });
+    newPost(post)
     this.setState({ shouldRedirect: true })
   }
 

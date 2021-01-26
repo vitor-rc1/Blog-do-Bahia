@@ -8,6 +8,7 @@ class PostForm extends React.Component {
   constructor() {
     super();
     this.state = {
+      id: 0,
       cardText: '',
       cardImg: '',
       cardColor: '',
@@ -83,7 +84,32 @@ class PostForm extends React.Component {
 
   propsToState(post) {
     console.log(post)
-    this.setState({ ...post })
+    const {
+      id,
+      cardtext: cardText,
+      cardimg: cardImg,
+      cardcolor: cardColor,
+      cardimgwidth: cardImgWidth,
+      cardtextcolor: cardTextColor,
+      cardtitle: cardTitle,
+      title,
+      titlecolor: titleColor,
+      section,
+      postitems: { postItems },
+    } = post;
+    this.setState({ 
+      id,
+      cardText,
+      cardImg,
+      cardColor,
+      cardImgWidth,
+      cardTextColor,
+      cardTitle,
+      title,
+      titleColor,
+      section,
+      postItems,
+     })
   }
 
   render() {
@@ -215,17 +241,17 @@ class PostForm extends React.Component {
 
                 <div>
                   {items ? items.map((item, index) => {
-                    const { 
-                      type, 
-                      url, 
-                      text, 
+                    const {
+                      type,
+                      url,
+                      text,
                       colorText,
-                      colorBackground, 
-                      height, 
-                      width, 
-                      leftPos, 
+                      colorBackground,
+                      height,
+                      width,
+                      leftPos,
                       topPos,
-                      position, 
+                      position,
                     } = postItems[index];
                     return (
                       <div className="item" key={index}>
