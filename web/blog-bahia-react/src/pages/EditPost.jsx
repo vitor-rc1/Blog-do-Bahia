@@ -11,9 +11,8 @@ class EditPost extends React.Component {
   }
 
   async handleSubmit(post) {
-    console.log(post)
-    updatePost(post)
-    this.setState({ shouldRedirect: true })
+    updatePost(post);
+    this.setState({ shouldRedirect: true });
   }
 
   componentDidMount() {

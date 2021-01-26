@@ -14,6 +14,7 @@ class SectionForm extends React.Component {
       imgSize: '',
       about: '',
       index: '',
+      id: 0,
     };
     this.updatePost = this.updatePost.bind(this);
     this.updateItemsState = this.updateItemsState.bind(this);
@@ -45,7 +46,24 @@ class SectionForm extends React.Component {
   }
 
   propsToState(post) {
-    this.setState({ ...post })
+    const {
+      preview,
+      title,
+      img,
+      imgsize: imgSize,
+      about,
+      index,
+      id,
+    } = post
+    this.setState({
+      preview,
+      title,
+      img,
+      imgSize,
+      about,
+      index,
+      id,
+    } )
   }
 
   render() {

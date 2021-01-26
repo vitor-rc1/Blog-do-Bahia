@@ -1,6 +1,7 @@
 import React from 'react';
 import SectionForm from '../components/SectionForm';
 import { Redirect } from 'react-router-dom';
+import { newSection } from '../services/api';
 
 class NewPost extends React.Component {
   constructor() {
@@ -10,16 +11,8 @@ class NewPost extends React.Component {
   }
 
   async handleSubmit(section) {
-    console.log(section)
-    const URL = 'http://localhost:3001/section/create';
-    await fetch(URL, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(section),
-    });
-    this.setState({ shouldRedirect: true })
+    newSection(section);
+    this.setState({ shouldRedirect: true });
   }
 
   render() {

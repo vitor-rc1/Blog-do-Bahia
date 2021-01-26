@@ -1,6 +1,7 @@
 import React from 'react';
 import SectionForm from '../components/SectionForm';
 import { Redirect } from 'react-router-dom';
+import { getSection, updateSection } from '../services/api';
 
 class EditSection extends React.Component {
   constructor() {
@@ -10,26 +11,17 @@ class EditSection extends React.Component {
   }
 
   async handleSubmit(section) {
-    const URL = `http://localhost:3001/section/update/${this.state.id}`;
-    await fetch(URL, {
-      method: 'PUT',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(section),
-    });
-    this.setState({ shouldRedirect: true })
+    updateSection(section);
+    this.setState({ shouldRedirect: true });
   }
 
   componentDidMount() {
     this.loadPost(this.props.match.params.id);
   }
   async loadPost(idPost) {
-    const URL = `http://localhost:3001/section/load/${idPost}`;
-    const response = await fetch(URL);
-    const [{id, section}] = await response.json();
-    this.setState({ section, id }, () => {
-      this.setState({ shouldLoading: true })
+    const data = await getSection(idPost);
+    this.setState({ data }, () => {
+      this.setState({ shouldLoading: true });
     });
   }
 
@@ -38,7 +30,7 @@ class EditSection extends React.Component {
     return (<Redirect to="/" />);
     }else if(this.state.shouldLoading) {
     return (
-      <SectionForm handleSubmit={ this.handleSubmit } editSection={true} post={this.state.section}/>
+      <SectionForm handleSubmit={ this.handleSubmit } editSection={true} post={this.state.data[0]}/>
     )}
     return '';
   }
