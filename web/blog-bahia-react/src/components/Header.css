@@ -14,6 +14,7 @@
   align-items: center;
   flex-direction: column;
   transition: color 0.2s;
+  font-size: 2rem;
   /* color: white; */
 
 }

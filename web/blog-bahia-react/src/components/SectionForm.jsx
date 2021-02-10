@@ -11,10 +11,10 @@ class SectionForm extends React.Component {
       preview: false,
       title: '',
       img: '',
-      imgSize: '',
       about: '',
-      index: '',
+      indexText: '',
       id: 0,
+      colorSection: '',
     };
     this.updatePost = this.updatePost.bind(this);
     this.updateItemsState = this.updateItemsState.bind(this);
@@ -35,45 +35,45 @@ class SectionForm extends React.Component {
   previewPost() {
     return (
       <div>
-        <Card cardContent={this.state} />
         <PostContent post={this.state} />
       </div>
     )
   }
 
   componentDidMount() {
-    this.propsToState(this.props.post)
+    const { type } = this.props;
+    if (type === 'edit') {
+      this.propsToState(this.props.post)
+    }
   }
 
   propsToState(post) {
     const {
-      preview,
       title,
       img,
-      imgsize: imgSize,
       about,
-      index,
+      indextext: indexText,
       id,
+      colorsection: colorSection
     } = post
     this.setState({
-      preview,
       title,
       img,
-      imgSize,
       about,
-      index,
+      indexText,
       id,
-    } )
+      colorSection,
+    })
   }
 
   render() {
     const {
       title,
       img,
-      imgSize,
       about,
-      index,
+      indexText,
       preview,
+      colorSection,
     } = this.state;
     const { newSection, editSection } = this.props;
     return (
@@ -103,7 +103,7 @@ class SectionForm extends React.Component {
                 value={img}
               />
 
-              <label htmlFor="card-img">Tamanho da imagem da seção</label>
+              {/* <label htmlFor="card-img">Tamanho da imagem da seção</label>
               <input
                 type="text"
                 id="card-img-width"
@@ -111,6 +111,16 @@ class SectionForm extends React.Component {
                 name="imgSize"
                 onChange={({ target: { name, value } }) => this.updatePost(name, value)}
                 value={imgSize}
+              /> */}
+
+              <label htmlFor="color-page">Cor da section</label>
+              <input
+                type="text"
+                id="color-section"
+                placeholder="rgb(r, g, b)"
+                name="colorSection"
+                onChange={({ target: { name, value } }) => this.updatePost(name, value)}
+                value={colorSection}
               />
 
               <label htmlFor="card-text">Sobre</label>
@@ -128,9 +138,9 @@ class SectionForm extends React.Component {
                 type="text"
                 id="card-text"
                 placeholder="Digite seu texto aqui"
-                name="index"
+                name="indexText"
                 onChange={({ target: { name, value } }) => this.updatePost(name, value)}
-                value={index}
+                value={indexText}
               />
 
             </div>
@@ -146,7 +156,7 @@ class SectionForm extends React.Component {
                   this.props.handleSubmit(this.state);
                 }
               }
-            hidden={!newSection}
+              hidden={!newSection}
             >
               Criar
             </button>
@@ -160,7 +170,7 @@ class SectionForm extends React.Component {
                   this.props.handleSubmit(this.state);
                 }
               }
-            hidden={!editSection}
+              hidden={!editSection}
             >
               Atualizar
             </button>

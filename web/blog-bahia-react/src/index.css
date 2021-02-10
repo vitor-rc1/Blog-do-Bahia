@@ -1,17 +1,10 @@
-html, body {
+body {
   font-family: sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-image: url("./images/fundo.jpeg");
+  background-image: url("./images/home.jpg");
   background-size: 100%;
   background-repeat: repeat-y;
-}
-
-body {
   min-height: 100%;
-}
-
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+  font-family: 'Roboto', sans-serif;
 }

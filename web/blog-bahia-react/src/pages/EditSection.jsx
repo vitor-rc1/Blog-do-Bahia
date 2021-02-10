@@ -30,7 +30,7 @@ class EditSection extends React.Component {
     return (<Redirect to="/" />);
     }else if(this.state.shouldLoading) {
     return (
-      <SectionForm handleSubmit={ this.handleSubmit } editSection={true} post={this.state.data[0]}/>
+      <SectionForm type="edit" handleSubmit={ this.handleSubmit } editSection={true} post={this.state.data[0]}/>
     )}
     return '';
   }

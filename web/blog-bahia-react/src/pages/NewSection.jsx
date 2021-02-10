@@ -20,7 +20,7 @@ class NewPost extends React.Component {
       return (<Redirect to="/" />);
     }
     return (
-      <SectionForm handleSubmit={this.handleSubmit} newSection={true} />
+      <SectionForm type="new" handleSubmit={this.handleSubmit} newSection={true} />
     )
   }
 }

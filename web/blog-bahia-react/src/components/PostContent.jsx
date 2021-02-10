@@ -15,17 +15,16 @@ class PostContent extends React.Component {
   }
 
   render() {
-    const { title, postitems: {postItems}, colorPage, titlecolor: titleColor } = this.props.post;
-    console.log(title)
+    const { title, postitems: {postItems}, colorpage: colorPage, titlecolor: titleColor } = this.props.post;
+    console.log(this.props.post)
     if (postItems || title) {
       return (
         <div
           className="post"
-        // style={{ backgroundColor: `${colorPage}`}}
+          style={{ backgroundColor: `${colorPage}`}}
         >
           <h2 className="post-title" style={{ color: `${titleColor}` }}>{title}</h2>
           <div className="post-content">
-
             {postItems.map((item, index) => {
               return this.renderComponent(item, index);
             })}

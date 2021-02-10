@@ -15,6 +15,7 @@ class PostForm extends React.Component {
       cardImgWidth: '',
       cardTextColor: '',
       cardTitle: '',
+      colorPage: '',
       title: '',
       titleColor: '',
       section: '',
@@ -41,6 +42,7 @@ class PostForm extends React.Component {
       colorText: '',
       leftPos: '',
       topPos: '',
+      colorPage: '',
     }
     if (this.state.postItems) {
       this.setState({
@@ -70,22 +72,53 @@ class PostForm extends React.Component {
   }
 
   previewPost() {
+    const {
+      id,
+      cardText: cardtext,
+      cardImg: cardimg,
+      cardColor: cardcolor,
+      cardImgWidth: cardimgwidth,
+      cardTextColor: cardtextcolor,
+      cardTitle: cardtitle,
+      colorPage: colorpage,
+      title,
+      titleColor: titlecolor,
+      postItems,
+    } = this.state
+    const cardPreview = {
+      id,
+      cardimg,
+      cardtext,
+      cardcolor,
+      cardtextcolor,
+      cardtitle,
+      cardimgwidth
+    }
+    const postPreview = {
+          title,
+          postitems: {postItems},
+          colorpage,
+          titlecolor
+    }
     return (
       <div>
-        <Card cardContent={this.state} />
-        <PostContent post={this.state} />
+        <Card cardContent={ cardPreview } />
+        <PostContent post={ postPreview } />
       </div>
     )
   }
 
   componentDidMount() {
-    this.propsToState(this.props.post)
+    const { type } = this.props;
+    if (type === 'edit') {
+      this.propsToState(this.props.post);
+    }
   }
 
   propsToState(post) {
-    console.log(post)
     const {
       id,
+      colorpage: colorPage,
       cardtext: cardText,
       cardimg: cardImg,
       cardcolor: cardColor,
@@ -97,7 +130,7 @@ class PostForm extends React.Component {
       section,
       postitems: { postItems },
     } = post;
-    this.setState({ 
+    this.setState({
       id,
       cardText,
       cardImg,
@@ -109,12 +142,14 @@ class PostForm extends React.Component {
       titleColor,
       section,
       postItems,
-     })
+      colorPage,
+    })
   }
 
   render() {
     const items = this.state.postItems;
     const {
+      colorPage,
       cardText,
       cardImg,
       cardColor,
@@ -228,7 +263,7 @@ class PostForm extends React.Component {
                   value={titleColor}
                 />
 
-                {/* <label htmlFor="color-page">Cor de fundo do post</label>
+                <label htmlFor="color-page">Cor de fundo do post</label>
                 <input
                   type="text"
                   id="color-page"
@@ -236,7 +271,7 @@ class PostForm extends React.Component {
                   name="colorPage"
                   onChange={({ target: { name, value } }) => this.updatePost(name, value)}
                   value={colorPage}
-                /> */}
+                />
 
 
                 <div>
