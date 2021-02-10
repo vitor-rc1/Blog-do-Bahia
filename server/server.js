@@ -27,7 +27,8 @@ CREATE TABLE IF NOT EXISTS posts (
   cardColor text, 
   cardImgWidth text, 
   cardTextColor text, 
-  cardTitle text, 
+  cardTitle text,
+  colorPage text, 
   title text,
   titleColor text,
   section text, 
@@ -50,6 +51,7 @@ app.post('/post/create', (req, res) => {
     cardImgWidth,
     cardTextColor,
     cardTitle,
+    colorPage,
     title,
     titleColor,
     section,
@@ -64,6 +66,7 @@ app.post('/post/create', (req, res) => {
     cardImgWidth,
     cardTextColor,
     cardTitle,
+    colorPage,
     title,
     titleColor,
     section,
@@ -75,6 +78,7 @@ app.post('/post/create', (req, res) => {
     '${cardImgWidth}',
     '${cardTextColor}',
     '${cardTitle}',
+    '${colorPage}',
     '${title}',
     '${titleColor}',
     '${section}',
@@ -130,6 +134,7 @@ app.put('/post/update/:id', (req, res) => {
     cardImgWidth,
     cardTextColor,
     cardTitle,
+    colorPage,
     title,
     titleColor,
     section,
@@ -145,6 +150,7 @@ app.put('/post/update/:id', (req, res) => {
     cardImgWidth = '${cardImgWidth}',
     cardTextColor = '${cardTextColor}',
     cardTitle = '${cardTitle}',
+    colorPage = '${colorPage}',
     title = '${title}',
     titleColor = '${titleColor}',
     section = '${section}',
@@ -175,7 +181,7 @@ app.delete('/post/delete/:id', (req, res) => {
 
 //SECTIONS
 pool.query(
-  'CREATE TABLE IF NOT EXISTS sections (id SERIAL PRIMARY KEY, title text, img text, imgSize integer, about text, indexText text)',
+  'CREATE TABLE IF NOT EXISTS sections (id SERIAL PRIMARY KEY, title text, img text, colorSection text, about text, indexText text)',
   (error) => {
     console.log(error)
   }
@@ -185,10 +191,10 @@ pool.query(
 app.post('/section/create', (req, res) => {
   console.log(req.body)
 
-  const { title, img, imgSize, about, index } = req.body
+  const { title, img, colorSection, about, indexText } = req.body
 
-  pool.query(`INSERT INTO sections(title, img, imgSize, about, indexText) 
-  VALUES('${title}', '${img}', ${imgSize},'${about}', '${index}')`, (error) => {
+  pool.query(`INSERT INTO sections(title, img, colorSection, about, indexText) 
+  VALUES('${title}', '${img}', '${colorSection}','${about}', '${indexText}')`, (error) => {
     if (error) {
       console.error(error);
       return;
@@ -226,9 +232,8 @@ app.get('/section/load/:id', (req, res) => {
 // update specific section
 app.put('/section/update/:id', (req, res) => {
   console.log(req.body)
-  const { title, img, imgSize, about, index } = req.body
-
-  pool.query(`UPDATE sections SET title='${title}', img='${img}', imgSize=${imgSize}, about='${about}', indexText='${index}' 
+  const { title, img, colorSection, about, indexText } = req.body
+  pool.query(`UPDATE sections SET title='${title}', img='${img}', colorSection='${colorSection}', about='${about}', indexText='${indexText}' 
   WHERE id=${req.params.id}`, (error, result) => {
     if (error) {
       console.error(error);
