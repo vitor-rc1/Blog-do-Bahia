@@ -1,5 +1,6 @@
 import React from 'react';
 import PostContent from '../components/PostContent';
+import SideBar from '../components/SideBar/SideBar';
 
 import './Post.css';
 
@@ -31,7 +32,10 @@ class Post extends React.Component {
     }
     
     return (
-      <PostContent post={this.state.post} />
+      <div>
+        <SideBar />
+        <PostContent post={this.state.post} />
+      </div>
     )
   }
 }

@@ -15,6 +15,7 @@ class SectionForm extends React.Component {
       indexText: '',
       id: 0,
       colorSection: '',
+      colorNavFooter: '',
     };
     this.updatePost = this.updatePost.bind(this);
     this.updateItemsState = this.updateItemsState.bind(this);
@@ -54,7 +55,8 @@ class SectionForm extends React.Component {
       about,
       indextext: indexText,
       id,
-      colorsection: colorSection
+      colorsection: colorSection,
+      colornavfooter: colorNavFooter,
     } = post
     this.setState({
       title,
@@ -63,6 +65,7 @@ class SectionForm extends React.Component {
       indexText,
       id,
       colorSection,
+      colorNavFooter,
     })
   }
 
@@ -74,6 +77,7 @@ class SectionForm extends React.Component {
       indexText,
       preview,
       colorSection,
+      colorNavFooter,
     } = this.state;
     const { newSection, editSection } = this.props;
     return (
@@ -121,6 +125,16 @@ class SectionForm extends React.Component {
                 name="colorSection"
                 onChange={({ target: { name, value } }) => this.updatePost(name, value)}
                 value={colorSection}
+              />
+
+              <label htmlFor="color-page">Cor do rodapé e da barra lateral</label>
+              <input
+                type="text"
+                id="color-section"
+                placeholder="rgb(r, g, b)"
+                name="colorNavFooter"
+                onChange={({ target: { name, value } }) => this.updatePost(name, value)}
+                value={colorNavFooter}
               />
 
               <label htmlFor="card-text">Sobre</label>

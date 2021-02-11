@@ -1,6 +1,7 @@
 import React from 'react';
 import Header from '../components/Header';
 import Card from '../components/Card';
+import SideBar from '../components/SideBar/SideBar';
 
 import './Home.css';
 
@@ -26,6 +27,7 @@ class Home extends React.Component {
     return (
       <div className="home">
         <Header />
+        <SideBar />
         <div className="cards">
           { posts.map((card) => {
             return (

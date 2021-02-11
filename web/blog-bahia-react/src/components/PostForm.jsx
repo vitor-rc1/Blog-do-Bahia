@@ -1,7 +1,7 @@
 import React from 'react';
 import PostContent from './PostContent';
 import Card from './Card';
-
+import { getSections } from '../services/api';
 import './PostForm.css';
 
 class PostForm extends React.Component {
@@ -16,18 +16,20 @@ class PostForm extends React.Component {
       cardTextColor: '',
       cardTitle: '',
       colorPage: '',
+      colorNavFooter: '',
       title: '',
       titleColor: '',
       section: '',
       postItems: [],
-      preview: false
+      preview: false,
+      selectionsOptions: []
     };
     this.newItem = this.newItem.bind(this);
     this.updatePost = this.updatePost.bind(this);
     this.updateItemsState = this.updateItemsState.bind(this);
     this.removeItem = this.removeItem.bind(this);
     this.previewPost = this.previewPost.bind(this);
-
+    this.loadSections = this.loadSections.bind(this);
   }
 
   newItem() {
@@ -42,7 +44,6 @@ class PostForm extends React.Component {
       colorText: '',
       leftPos: '',
       topPos: '',
-      colorPage: '',
     }
     if (this.state.postItems) {
       this.setState({
@@ -81,6 +82,7 @@ class PostForm extends React.Component {
       cardTextColor: cardtextcolor,
       cardTitle: cardtitle,
       colorPage: colorpage,
+      colorNavFooter: colornavfooter,
       title,
       titleColor: titlecolor,
       postItems,
@@ -95,15 +97,16 @@ class PostForm extends React.Component {
       cardimgwidth
     }
     const postPreview = {
-          title,
-          postitems: {postItems},
-          colorpage,
-          titlecolor
+      title,
+      postitems: { postItems },
+      colorpage,
+      titlecolor,
+      colornavfooter,
     }
     return (
       <div>
-        <Card cardContent={ cardPreview } />
-        <PostContent post={ postPreview } />
+        <Card cardContent={cardPreview} />
+        <PostContent post={postPreview} />
       </div>
     )
   }
@@ -113,6 +116,12 @@ class PostForm extends React.Component {
     if (type === 'edit') {
       this.propsToState(this.props.post);
     }
+    this.loadSections();
+  }
+
+  async loadSections() {
+    const sections = await getSections();
+    this.setState({ selectionsOptions: sections });
   }
 
   propsToState(post) {
@@ -125,6 +134,7 @@ class PostForm extends React.Component {
       cardimgwidth: cardImgWidth,
       cardtextcolor: cardTextColor,
       cardtitle: cardTitle,
+      colornavfooter: colorNavFooter,
       title,
       titlecolor: titleColor,
       section,
@@ -143,6 +153,7 @@ class PostForm extends React.Component {
       section,
       postItems,
       colorPage,
+      colorNavFooter,
     })
   }
 
@@ -150,6 +161,7 @@ class PostForm extends React.Component {
     const items = this.state.postItems;
     const {
       colorPage,
+      colorNavFooter,
       cardText,
       cardImg,
       cardColor,
@@ -161,6 +173,7 @@ class PostForm extends React.Component {
       section,
       preview,
       postItems,
+      selectionsOptions,
     } = this.state;
     const { newPost, editPost } = this.props;
     return (
@@ -236,13 +249,17 @@ class PostForm extends React.Component {
               <fieldset className="items-page">
                 <p>Conteúdo da página</p>
                 <label htmlFor="post-section">Seção</label>
-                <input
-                  type="text"
+                <select
                   id="post-section"
                   name="section"
                   onChange={({ target: { name, value } }) => this.updatePost(name, value)}
                   value={section}
-                />
+                >
+                  {selectionsOptions
+                    .map(({ id, title }) => (<option key={id} value={title}>{title}</option>)
+                    )
+                  }
+                </select>
 
                 <label htmlFor="post-title">Titulo</label>
                 <input
@@ -271,6 +288,16 @@ class PostForm extends React.Component {
                   name="colorPage"
                   onChange={({ target: { name, value } }) => this.updatePost(name, value)}
                   value={colorPage}
+                />
+
+                <label htmlFor="color-page">Cor do rodapé e da barra lateral</label>
+                <input
+                  type="text"
+                  id="color-page"
+                  placeholder="rgb(r, g, b)"
+                  name="colorNavFooter"
+                  onChange={({ target: { name, value } }) => this.updatePost(name, value)}
+                  value={colorNavFooter}
                 />
 
 
