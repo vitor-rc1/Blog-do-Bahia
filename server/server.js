@@ -248,6 +248,7 @@ app.get('/sections', (req, res) => {
 
 // acess especific section
 app.get('/section/load/:id', (req, res) => {
+  const response = { section: {}, posts: []};
   pool.query(`SELECT * FROM sections WHERE id=${req.params.id}`, (error, result) => {
     if (error) {
       console.error(error);
@@ -289,6 +290,29 @@ app.delete('/section/delete/:id', (req, res) => {
     }
     res.send("Delete successful")
   })
+})
+
+// generate matrix with the list of texts by section
+app.get('/text-by-section', (req, res) => {
+  const response = { section: {}, posts: []};
+  pool.query(`SELECT * FROM sections`, (error, result) => {
+    if (error) {
+      console.error(error);
+      return;
+    }
+    console.log(result);
+    // res.send(result.rows)
+  })
+
+  pool.query(`SELECT id, section FROM posts`, (error, result) => {
+    if (error) {
+      console.error(error);
+      return;
+    }
+    console.log(result);
+    // res.send(result.rows)
+  })
+  res.send('resolvido')
 })
 
 app.listen(port, () => {

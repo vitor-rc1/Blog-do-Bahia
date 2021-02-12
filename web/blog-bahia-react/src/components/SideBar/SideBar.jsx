@@ -19,9 +19,7 @@ class SideBar extends React.Component {
 
   async loadSections() {
     const sections = await getSections();
-    this.setState({ sectionsLinks: sections }, () => {
-      sessionStorage.setItem('sections', JSON.stringify(sections))
-    });
+    this.setState({ sectionsLinks: sections });
   }
 
   toggleSidebar = () => {

@@ -255,6 +255,7 @@ class PostForm extends React.Component {
                   onChange={({ target: { name, value } }) => this.updatePost(name, value)}
                   value={section}
                 >
+                  <option hidden={true}>Selecione</option>
                   {selectionsOptions
                     .map(({ id, title }) => (<option key={id} value={title}>{title}</option>)
                     )

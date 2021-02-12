@@ -12,7 +12,10 @@ import {getPosts} from '../services/api';
 class Home extends React.Component {
   constructor() {
     super();
-    this.state = { posts: [] }
+    this.state = { 
+      posts: [], 
+      shouldLoading: false, 
+    };
     this.loadPosts = this.loadPosts.bind(this);
   }
   componentDidMount() {
@@ -21,10 +24,15 @@ class Home extends React.Component {
   async loadPosts() {
     const posts = await getPosts();
     console.log(posts)
-    this.setState({ posts });
+    this.setState({ posts }, () => {
+      this.setState({ shouldLoading: true });
+    });
   }
   render() {
-    const {posts} = this.state
+    const { posts, shouldLoading } = this.state;
+    if (!shouldLoading) {
+      return '...Carregando';
+    }
     return (
       <div className="home">
         <Header />
