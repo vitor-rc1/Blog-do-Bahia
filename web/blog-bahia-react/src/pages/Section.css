@@ -1,0 +1,29 @@
+.section-component {
+  min-height: 100vh;
+  padding-top: 20px;
+  background-size: 100%;
+}
+
+.section-component .section {
+  /* margin-top: 20px; */
+  width: 70%;
+  margin: 0 auto;
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-direction: column;
+}
+
+.section .title {
+  margin: 0 0;
+  margin: 10px 15px;
+}
+
+.section .about, .section .index {
+  margin: 10px 30px;
+}
+
+.section-component .footer-component {
+  position: fixed;
+}

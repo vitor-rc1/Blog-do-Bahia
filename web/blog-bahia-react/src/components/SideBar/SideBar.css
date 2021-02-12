@@ -6,6 +6,7 @@
   /* display: flex;
   align-items: center; */
   margin-top: 80px;
+  z-index: 10;
 }
 
 .side-bar-links {

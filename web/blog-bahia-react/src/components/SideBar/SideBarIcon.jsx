@@ -1,13 +1,12 @@
 import React from 'react'
-import { BsFillCaretLeftFill, BsFillCaretRightFill } from 'react-icons/bs/';
 import icon from '../../images/icons/flor 4.png'
 import './SideBarIcon.css'
-{/* {isOpen ? <BsFillCaretRightFill style={size} /> : <BsFillCaretLeftFill style={size} />} */}
 
-const SidebarIcon = ({ handleClick, isOpen }) => {
+const SidebarIcon = ({ handleClick }) => {
   return (
     <input
       type="image"
+      alt="icone da pagina"
       onClick={handleClick}
       className="side-bar-icon"
       src={icon}
