@@ -1,0 +1,6 @@
+.post-component {
+  /* background-color: violet; */
+  min-height: 100vh;
+  position: relative;
+  padding: 20px 0 0;
+}

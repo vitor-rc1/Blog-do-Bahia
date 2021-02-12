@@ -31,7 +31,7 @@ class EditPost extends React.Component {
     return (<Redirect to="/" />);
     }else if(this.state.shouldLoading) {
     return (
-      <PostForm type="edit" handleSubmit={ this.handleSubmit } editPost={true} post={this.state.data[0]}/>
+      <PostForm type="edit" handleSubmit={ this.handleSubmit } editPost={true} post={this.state.data.post}/>
     )}
     return '';
   }

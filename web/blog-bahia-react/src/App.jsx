@@ -2,6 +2,7 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import Home from './pages/Home';
 import About from './pages/About';
 import Post from './pages/Post';
+import Section from './pages/Section';
 
 import EditPost from './pages/EditPost';
 import NewPost from './pages/NewPost';
@@ -22,6 +23,7 @@ function App() {
         <Route exact path="/post/:id/edit" component={EditPost} />
         <Route exact path="/post/new" component={NewPost} />
         <Route exact path="/section/new" component={NewSection} />
+        <Route exact path="/section/:id" component={Section} />
         <Route exact path="/section/:id/edit" component={EditSection} />
       </Switch>
     </BrowserRouter>

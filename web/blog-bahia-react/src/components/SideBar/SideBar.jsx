@@ -1,5 +1,7 @@
 import React from 'react';
 import SidebarIcon from './SideBarIcon';
+import { getSections } from '../../services/api';
+import { Link } from 'react-router-dom';
 import './SideBar.css';
 
 class SideBar extends React.Component {
@@ -7,8 +9,19 @@ class SideBar extends React.Component {
     super();
     this.state = {
       isOpen: false,
-
+      sectionsLinks: []
     };
+  }
+
+  componentDidMount() {
+    this.loadSections();
+  }
+
+  async loadSections() {
+    const sections = await getSections();
+    this.setState({ sectionsLinks: sections }, () => {
+      sessionStorage.setItem('sections', JSON.stringify(sections))
+    });
   }
 
   toggleSidebar = () => {
@@ -18,24 +31,31 @@ class SideBar extends React.Component {
   }
 
   render() {
-    const { isOpen } = this.state;
-
+    const { isOpen, sectionsLinks } = this.state;
+    const { color } = this.props
     return (
       <div className="side-bar-component">
-        <div className="sidebar-icon">
+        <div className="sidebar-icon-component">
           <SidebarIcon
             isOpen={isOpen}
             handleClick={this.toggleSidebar}
           />
         </div>
-
-            <div
-              className={`side-bar-links ${isOpen ?'fadeIn':'fadeOut'}`}
+        <div
+          className={`side-bar-links ${isOpen ? 'fadeIn' : 'fadeOut'}`}
+          style={{backgroundColor: `${color}` }}
+        >
+          {sectionsLinks.map(({ id, title }) => (
+            <Link 
+              to={`/section/${id}`} 
+              hidden={!isOpen} 
+              className="side-bar-link"
+              key={id}
             >
-              <div hidden={!isOpen} className="side-bar-link">Home</div>
-              <div hidden={!isOpen} className="side-bar-link">About</div>
-              <div hidden={!isOpen} className="side-bar-link">Contact</div>
-            </div>
+              {title}
+            </Link>
+          ))}
+        </div>
       </div >
     )
   }

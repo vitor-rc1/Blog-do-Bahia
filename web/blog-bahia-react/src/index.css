@@ -7,4 +7,6 @@ body {
   background-repeat: repeat-y;
   min-height: 100%;
   font-family: 'Roboto', sans-serif;
+  margin: 0;
+  padding: 0;
 }

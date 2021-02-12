@@ -1,20 +1,17 @@
 import React from 'react'
-import { BsFillCaretLeftFill, BsFillCaretRightFill } from 'react-icons/bs/'
-
-const size = {
-  width: '25px',
-  height: '35px',
-}
+import { BsFillCaretLeftFill, BsFillCaretRightFill } from 'react-icons/bs/';
+import icon from '../../images/icons/flor 4.png'
+import './SideBarIcon.css'
+{/* {isOpen ? <BsFillCaretRightFill style={size} /> : <BsFillCaretLeftFill style={size} />} */}
 
 const SidebarIcon = ({ handleClick, isOpen }) => {
   return (
-    <span
+    <input
+      type="image"
       onClick={handleClick}
       className="side-bar-icon"
-
-    >
-      {isOpen ? <BsFillCaretRightFill style={size} /> : <BsFillCaretLeftFill style={size} />}
-    </span>
+      src={icon}
+    />
   )
 }
 export default SidebarIcon

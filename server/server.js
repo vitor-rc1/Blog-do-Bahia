@@ -118,14 +118,26 @@ app.get('/posts', (req, res) => {
 
 // acess especific post
 app.get('/post/load/:id', (req, res) => {
-  console.log(req)
+  const response = { section: {}, post: {}}
+  // console.log(req.body)
   pool.query(`SELECT * FROM posts WHERE id=${req.params.id}`, (error, result) => {
     if (error) {
       console.error(error);
       return;
     }
-    console.log(result);
-    res.send(result.rows)
+    const [ postResult ] = result.rows;
+    response.post = postResult;
+
+    pool.query(`SELECT * FROM sections WHERE title='${response.post.section}'`, (error, result) => {
+      if (error) {
+        console.error(error);
+        return;
+      }
+      const [ sectionResult ] = result.rows;
+      response.section = sectionResult;
+  
+      res.send(response);
+    })
   })
 })
 
@@ -156,7 +168,7 @@ app.put('/post/update/:id', (req, res) => {
     cardTextColor = '${cardTextColor}',
     cardTitle = '${cardTitle}',
     colorPage = '${colorPage}',
-    colorPage = '${colorNavFooter}',
+    colorNavFooter = '${colorNavFooter}',
     title = '${title}',
     titleColor = '${titleColor}',
     section = '${section}',
@@ -189,7 +201,8 @@ app.delete('/post/delete/:id', (req, res) => {
 const querySection = `
 CREATE TABLE IF NOT EXISTS sections (
   id SERIAL PRIMARY KEY, 
-  title text, img text, 
+  title text, 
+  img text, 
   colorSection text, 
   colorNavFooter text, 
   about text, 

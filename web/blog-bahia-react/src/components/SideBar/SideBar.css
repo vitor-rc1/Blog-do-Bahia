@@ -1,22 +1,31 @@
 .side-bar-component {
-  background-color: #176E8C;
   height: fit-content;
   position: absolute;
   right: 0;
   top: 0;
-  display: flex;
-  align-items: center;
-  margin-top: 30px;
+  /* display: flex;
+  align-items: center; */
+  margin-top: 80px;
 }
 
 .side-bar-links {
-  padding-right: 10px;
+  padding: 5px 10px 5px 5px;
   display: flex;
   flex-direction: column;
+  background-color: #176E8C;
+  border-radius: 10px 0 0 10px;
 }
 
 .side-bar-link {
-  margin: 5px;
+  margin: 2px;
+  text-decoration: none;
+  color: white;
+  padding: 3px;
+}
+
+.side-bar-link:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+  font-weight: bold;
 }
 
 .fadeOut{
@@ -28,7 +37,7 @@
 }
 .fadeIn{
   opacity:1;
-  width: 150px;
+  width: 200px;
   height:fit-content;
   /* transition: width 0.01s; */
 }

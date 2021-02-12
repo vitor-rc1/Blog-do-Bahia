@@ -21,7 +21,6 @@ class PostContent extends React.Component {
       colorpage: colorPage,
       titlecolor: titleColor,
     } = this.props.post;
-    console.log(this.props.post)
     if (postItems || title) {
       return (
         <div

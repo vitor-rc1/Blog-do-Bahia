@@ -2,6 +2,7 @@ import React from 'react';
 import Header from '../components/Header';
 import Card from '../components/Card';
 import SideBar from '../components/SideBar/SideBar';
+import Footer from '../components/Footer';
 
 import './Home.css';
 
@@ -35,6 +36,7 @@ class Home extends React.Component {
             )
           })}
         </div>
+      <Footer />
       </div>
     );
   }
