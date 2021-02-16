@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from  'react-router-dom';
 import PostAudio from './PostComponents/PostAudio';
 import PostImage from './PostComponents/PostImage';
 import PostText from './PostComponents/PostText';
@@ -20,6 +21,7 @@ class PostContent extends React.Component {
       postitems: { postItems },
       colorpage: colorPage,
       titlecolor: titleColor,
+      section,
     } = this.props.post;
     if (postItems || title) {
       return (
@@ -32,23 +34,11 @@ class PostContent extends React.Component {
             {postItems.map((item, index) => {
               return this.renderComponent(item, index);
             })}
-
-            {/* <div className="post-middle">
-              {postItems.map((item, index) => {
-                if (item.position === 'middle') {
-                  return this.renderComponent(item, index);
-                }
-                return ''
-              })}
-            </div> */}
-            {/* <div className="post-right">
-              {postItems.map((item, index) => {
-                if (item.position === 'right') {
-                  return this.renderComponent(item, index);
-                }
-                return ''
-              })}
-            </div> */}
+          </div>
+          <div className="post-buttons">
+            <button>Baixar em PDF</button>
+            <button>ir para texto aleatório</button>
+            <Link to={`section/${section}`} >Voltar ao Menu da sessão</Link>
           </div>
         </div>
       );

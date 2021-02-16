@@ -40,19 +40,34 @@ class SideBar extends React.Component {
           />
         </div>
         <div
-          className={`side-bar-links ${isOpen ? 'fadeIn' : 'fadeOut'}`}
           style={{backgroundColor: `${color}` }}
+          className={`side-bar-links ${isOpen ? 'fadeIn' : 'fadeOut'}`}
         >
           {sectionsLinks.map(({ id, title }) => (
             <Link 
               to={`/section/${id}`} 
-              hidden={!isOpen} 
+              // hidden={!isOpen} 
               className="side-bar-link"
               key={id}
             >
               {title}
             </Link>
           ))}
+          <hr className="dividing-line" />
+          <Link 
+            to="/about" 
+            className="side-bar-link" 
+            // hidden={!isOpen} 
+            >
+              Sobre
+            </Link>
+          <Link
+            to="/" 
+            className="side-bar-link" 
+            // hidden={!isOpen} 
+            >
+            Voltar à página inicial
+          </Link>
         </div>
       </div >
     )

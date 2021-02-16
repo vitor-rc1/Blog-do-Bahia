@@ -257,7 +257,7 @@ class PostForm extends React.Component {
                 >
                   <option hidden={true}>Selecione</option>
                   {selectionsOptions
-                    .map(({ id, title }) => (<option key={id} value={title}>{title}</option>)
+                    .map(({ id, title }) => (<option key={id} value={id}>{title}</option>)
                     )
                   }
                 </select>

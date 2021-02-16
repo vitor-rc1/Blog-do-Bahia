@@ -27,6 +27,8 @@ class Home extends React.Component {
     this.setState({ posts }, () => {
       this.setState({ shouldLoading: true });
     });
+    const postsIds = posts.map(({ id }) =>  id);
+    sessionStorage.setItem('posts', JSON.stringify(postsIds));
   }
   render() {
     const { posts, shouldLoading } = this.state;
