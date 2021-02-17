@@ -8,7 +8,7 @@ import './Post.css';
 import { getPost } from '../services/api';
 
 class Post extends React.Component {
-  constructor() {
+  constructor(props) {
     super();
     this.state = {
       post: {
@@ -17,13 +17,27 @@ class Post extends React.Component {
       shouldLoading: false, 
       section: {
       },
+      id: props.match.params.id,
     };
     this.loadPost = this.loadPost.bind(this);
+    
   }
 
   componentDidMount() {
     this.loadPost(this.props.match.params.id);
   }
+
+  componentDidUpdate(){
+    const newId = this.props.match.params.id;
+    const { id } = this.state;
+    console.log(newId);
+    if(newId !== id) {
+      this.loadPost(newId);
+      this.setState({ id: newId });
+    }
+    window.scrollTo(0, 0)
+  }
+
   async loadPost(idPost) {
     const {post, section} = await getPost(idPost);
     this.setState({ post, section }, () => {
@@ -34,6 +48,7 @@ class Post extends React.Component {
   render() {
     console.log(this.state)
     const { shouldLoading, post: { colornavfooter }, section } = this.state;
+    const { history } = this.props;
     if (!shouldLoading) {
       return '...Carregando';
     }
@@ -44,7 +59,7 @@ class Post extends React.Component {
         style={section ? {backgroundImage: `url(${section.img})`} : null}
       >
         <SideBar color={colornavfooter} />
-        <PostContent post={this.state.post} />
+        <PostContent post={this.state.post} history={ history }/>
         <Footer color={colornavfooter} />
       </div>
     )

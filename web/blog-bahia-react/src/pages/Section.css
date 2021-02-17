@@ -16,6 +16,10 @@
   flex-direction: column;
 }
 
+.section-component .section:hover {
+  cursor: pointer;
+}
+
 .section .title {
   margin: 0 0;
   margin: 10px 15px;

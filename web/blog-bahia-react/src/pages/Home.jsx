@@ -23,12 +23,15 @@ class Home extends React.Component {
   }
   async loadPosts() {
     const posts = await getPosts();
-    console.log(posts)
     this.setState({ posts }, () => {
       this.setState({ shouldLoading: true });
     });
-    const postsIds = posts.map(({ id }) =>  id);
-    sessionStorage.setItem('posts', JSON.stringify(postsIds));
+    if (posts.length) {
+      const postsIds = posts
+      .map(({ id, section }) =>  ({ id, section }))
+      .sort((a,b) => a.id - b.id);
+      sessionStorage.setItem('posts', JSON.stringify(postsIds));
+    }
   }
   render() {
     const { posts, shouldLoading } = this.state;

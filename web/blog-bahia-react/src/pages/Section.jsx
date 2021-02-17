@@ -16,6 +16,7 @@ class Section extends Component {
       id: props.match.params.id
     };
     this.loadSection = this.loadSection.bind(this);
+    this.goToFirstPost = this.goToFirstPost.bind(this);
   }
 
   componentDidMount() {
@@ -25,7 +26,6 @@ class Section extends Component {
   componentDidUpdate(){
     const newId = this.props.match.params.id;
     const { id } = this.state;
-    console.log(newId);
     if(newId !== id) {
       this.loadSection(newId);
       this.setState({ id: newId });
@@ -34,10 +34,17 @@ class Section extends Component {
 
   async loadSection(idSection) {
     const [section] = await getSection(idSection);
-    console.log(section)
     this.setState({ section }, () => {
       this.setState({ shouldLoading: true })
     });
+  }
+
+  goToFirstPost(sectionId) {
+    const allPosts = JSON.parse(sessionStorage.getItem('posts')); 
+    const firstPost = allPosts.find(post => post.section === sectionId).id;
+    const { history } = this.props;
+
+    history.push(`/${firstPost}`);
   }
 
   render() {
@@ -48,6 +55,7 @@ class Section extends Component {
       img,
       indextext,
       title,
+      id,
     } } = this.state;
     if (!shouldLoading) {
       return '...Carregando';
@@ -61,6 +69,7 @@ class Section extends Component {
         <div 
           className="section"
           style={{ backgroundColor: `${colorsection}` }}
+          onClick={() => this.goToFirstPost(id)}
         >
           <h1 className="title">{title}</h1>
           <div className="about">{about}</div>

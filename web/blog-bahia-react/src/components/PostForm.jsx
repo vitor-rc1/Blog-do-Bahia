@@ -404,7 +404,7 @@ class PostForm extends React.Component {
                           hidden={type === 'audio' || type === 'text'}
                         />
 
-                        <label
+                        {/* <label
                           htmlFor={`item-top-${index}`}
                         >
                           Pos Y
@@ -417,9 +417,9 @@ class PostForm extends React.Component {
                           name="topPos"
                           onChange={({ target: { name, value } }) => this.updateItemsState(index, name, value)}
                           value={topPos}
-                        />
+                        /> */}
 
-                        <label
+                        {/* <label
                           htmlFor={`item-top-${index}`}
                         >
                           Pos X
@@ -432,7 +432,7 @@ class PostForm extends React.Component {
                           name="leftPos"
                           onChange={({ target: { name, value } }) => this.updateItemsState(index, name, value)}
                           value={leftPos}
-                        />
+                        /> */}
 
                         <label
                           htmlFor={`item-color-text-${index}`}

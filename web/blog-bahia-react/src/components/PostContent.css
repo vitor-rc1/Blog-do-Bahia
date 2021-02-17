@@ -39,6 +39,24 @@
   align-items: center;
 }
 
+.post-buttons {
+  margin: 20px;
+  display: flex;
+  justify-content: center;
+}
+
+.post-buttons button {
+  font-size: 0.9rem;
+  padding: 5px;
+  border: 1px solid #D3E2E5;
+  border-radius: 5px;
+  font-weight: bold;
+}
+
+.post-buttons button:hover {
+  cursor: pointer;
+}
+
 @media (max-width: 1000px) {
   .post-content {
     display: flex;
@@ -47,5 +65,17 @@
   }
   .post {
     height: 100%;
+  }
+}
+
+@media print {  
+  .footer-component, 
+  .post-buttons,
+  .side-bar-component {
+    display: none;
+  }
+
+  .post-title {
+    text-align: center;
   }
 }
