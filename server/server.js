@@ -18,6 +18,12 @@ const pool = new Pool({
   port: 5432,
 })
 
+// login
+app.post('/login', (req, res) => {
+  console.log(req.body)
+  res.send({response: 'logou'})
+})
+
 // create table
 const postQuery = `
 CREATE TABLE IF NOT EXISTS posts (
@@ -32,7 +38,7 @@ CREATE TABLE IF NOT EXISTS posts (
   colorNavFooter text, 
   title text,
   titleColor text,
-  section text, 
+  section integer, 
   postItems jsonb
   )
 `
@@ -59,7 +65,7 @@ app.post('/post/create', (req, res) => {
     section,
     postItems
   } = req.body;
-  const post = {postItems};
+  const post = { postItems };
   const queryInsert = `
   INSERT INTO posts (
     cardText,
@@ -85,7 +91,7 @@ app.post('/post/create', (req, res) => {
     '${colorNavFooter}',
     '${title}',
     '${titleColor}',
-    '${section}',
+    ${section},
     '${JSON.stringify(post)}'
   )
   `
@@ -102,7 +108,7 @@ app.post('/post/create', (req, res) => {
 // acess all posts
 app.get('/posts', (req, res) => {
   const query = `
-  SELECT id, cardtext, cardimg, cardcolor, cardimgwidth, cardtextcolor, cardtitle 
+  SELECT id, cardtext, cardimg, cardcolor, cardimgwidth, cardtextcolor, cardtitle, section
   FROM posts
   ORDER BY id DESC
   `
@@ -118,14 +124,14 @@ app.get('/posts', (req, res) => {
 
 // acess especific post
 app.get('/post/load/:id', (req, res) => {
-  const response = { section: {}, post: {}}
+  const response = { section: {}, post: {} }
   // console.log(req.body)
   pool.query(`SELECT * FROM posts WHERE id=${req.params.id}`, (error, result) => {
     if (error) {
       console.error(error);
       return;
     }
-    const [ postResult ] = result.rows;
+    const [postResult] = result.rows;
     response.post = postResult;
 
     pool.query(`SELECT * FROM sections WHERE title='${response.post.section}'`, (error, result) => {
@@ -133,9 +139,9 @@ app.get('/post/load/:id', (req, res) => {
         console.error(error);
         return;
       }
-      const [ sectionResult ] = result.rows;
+      const [sectionResult] = result.rows;
       response.section = sectionResult;
-  
+
       res.send(response);
     })
   })
@@ -157,7 +163,7 @@ app.put('/post/update/:id', (req, res) => {
     section,
     postItems
   } = req.body;
-  const post = {postItems};
+  const post = { postItems };
   const queryUpdate = `
   UPDATE posts
   SET 
@@ -171,7 +177,7 @@ app.put('/post/update/:id', (req, res) => {
     colorNavFooter = '${colorNavFooter}',
     title = '${title}',
     titleColor = '${titleColor}',
-    section = '${section}',
+    section = ${section},
     postItems = '${JSON.stringify(post)}'
   
   WHERE id=${req.params.id}
@@ -248,7 +254,7 @@ app.get('/sections', (req, res) => {
 
 // acess especific section
 app.get('/section/load/:id', (req, res) => {
-  const response = { section: {}, posts: []};
+  const response = { section: {}, posts: [] };
   pool.query(`SELECT * FROM sections WHERE id=${req.params.id}`, (error, result) => {
     if (error) {
       console.error(error);
@@ -290,29 +296,6 @@ app.delete('/section/delete/:id', (req, res) => {
     }
     res.send("Delete successful")
   })
-})
-
-// generate matrix with the list of texts by section
-app.get('/text-by-section', (req, res) => {
-  const response = { section: {}, posts: []};
-  pool.query(`SELECT * FROM sections`, (error, result) => {
-    if (error) {
-      console.error(error);
-      return;
-    }
-    console.log(result);
-    // res.send(result.rows)
-  })
-
-  pool.query(`SELECT id, section FROM posts`, (error, result) => {
-    if (error) {
-      console.error(error);
-      return;
-    }
-    console.log(result);
-    // res.send(result.rows)
-  })
-  res.send('resolvido')
 })
 
 app.listen(port, () => {
