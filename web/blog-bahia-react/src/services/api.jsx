@@ -69,3 +69,16 @@ export const updateSection = async (section) => {
     body: JSON.stringify(section),
   });
 }
+
+export const auth = async (user) => {
+  const URL = `${path}/login`;
+  const response = await fetch(URL, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(user),
+  });
+  return response.json();
+}
+
