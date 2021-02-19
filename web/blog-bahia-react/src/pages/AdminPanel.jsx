@@ -1,7 +1,11 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 import { getPosts, getSections, deleteSection, deletePost } from '../services/api';
-
+import { 
+  RiEdit2Fill, 
+  RiDeleteBin2Line, 
+  RiAddCircleLine,
+  RiHome2Line 
+} from "react-icons/ri";
 import './AdminPanel.css';
 
 class AdminPanel extends Component {
@@ -56,12 +60,15 @@ class AdminPanel extends Component {
     }
     return (
       <div className="admin-panel">
+        <RiHome2Line 
+          className="home-icon"
+          onClick={() => push("/")}
+        />
         <div className="sections">
           <h2>Sections</h2>
-          <input
-            type="button"
+          <RiAddCircleLine
+            className="new-section-icon"
             onClick={() => push("/section/new")}
-            value="Nova section"
           />
           <table>
             <thead>
@@ -78,19 +85,16 @@ class AdminPanel extends Component {
                   <td>{id}</td>
                   <td>{title}</td>
                   <td>
-                    <input
-                      type="button"
+                    <RiEdit2Fill
+                      className="edit-icon"
                       onClick={() => push(`/section/${id}/edit`)}
-                      value="Editar"
                     />
                   </td>
                   <td>
-                    <button
-                      type="button"
+                    <RiDeleteBin2Line
+                      className="delete-icon"
                       onClick={() => this.delete(deleteSection, id, 'sections')}
-                    >
-                      Deletar
-                    </button>
+                    />
                   </td>
                 </tr>
               ))}
@@ -99,10 +103,9 @@ class AdminPanel extends Component {
         </div>
         <div className="posts">
           <h2>Posts</h2>
-          <input
-            type="button"
+          <RiAddCircleLine
+            className="new-post-icon"
             onClick={() => push("/post/new")}
-            value="Novo post"
           />
           <table>
             <thead>
@@ -119,19 +122,16 @@ class AdminPanel extends Component {
                   <td>{id}</td>
                   <td>{cardtitle}</td>
                   <td>
-                    <input
-                      type="button"
+                    <RiEdit2Fill
+                      className="edit-icon"
                       onClick={() => push(`/post/${id}/edit`)}
-                      value="Editar"
                     />
                   </td>
                   <td>
-                    <button
-                      type="button"
+                    <RiDeleteBin2Line
+                      className="delete-icon"
                       onClick={() => this.delete(deletePost, id, 'posts')}
-                    >
-                      Deletar
-                    </button>
+                    />
                   </td>
                 </tr>
               ))}

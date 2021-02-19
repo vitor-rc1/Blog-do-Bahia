@@ -1,5 +1,5 @@
 .admin-panel {
-  margin-top: 30px;
+  margin-top: 5px;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
@@ -16,12 +16,44 @@
   border-radius: 10px;
   margin: 10px auto;
 }
+
 table {
   border-collapse: collapse;
 }
+
 td {
   padding: 5px;
 }
+
 tbody {
   background-color: rgba(100, 100, 100, 0.5);
+}
+
+.edit-icon, 
+.delete-icon {
+  width: 20px;
+  height: 20px;
+}
+
+.home-icon {
+  position: fixed;
+  left: 10px;
+  top: 10px;
+  width: 30px;
+  height: 30px;
+}
+
+.new-section-icon,
+.new-post-icon {
+  margin: 10px;
+  width: 30px;
+  height: 30px;
+}
+
+.edit-icon:hover, 
+.delete-icon:hover,
+.new-section-icon,
+.new-post-icon,
+.home-icon {
+  cursor: pointer;
 }

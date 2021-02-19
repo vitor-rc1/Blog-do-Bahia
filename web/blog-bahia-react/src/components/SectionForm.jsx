@@ -83,7 +83,7 @@ class SectionForm extends React.Component {
     return (
       <div>
         <form>
-          <h2 className="title">Criar section</h2>
+          <h2 className="title">{newSection ? 'Criar section' : 'Editar section'}</h2>
 
           <div className="container">
             <div className="page-content">

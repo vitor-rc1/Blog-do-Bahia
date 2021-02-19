@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './Login.css'
-
+import { RiHome2Line } from "react-icons/ri";
 import { auth } from '../services/api';
 
 class Login extends Component {
@@ -21,17 +21,25 @@ class Login extends Component {
   async handleSubmit() {
     const response = await auth(this.state)
     const { history } = this.props;
-    const { token } = response;
+    const { token, message } = response;
     if( token ) {
       sessionStorage.setItem('token', response.token);
       history.push('/admin');
+    } else {
+      alert( message );
     }
-    console.log(response)
+    
   }
 
   render() {
+    const { history: { push } } = this.props;
+
     return (
       <div className="login-component">
+        <RiHome2Line 
+          className="home-icon"
+          onClick={() => push("/")}
+        />
         <h1 className="title">Login</h1>
 
         <label htmlFor="email" >

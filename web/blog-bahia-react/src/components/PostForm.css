@@ -20,20 +20,34 @@ button {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  background-color: rgba(85, 84, 84, 0.5);
 }
 .page-content label {
   margin-top: 15px;
   margin-bottom: 10px;
+  font-weight: bold;
 }
 
 .card-content {
   display: flex;
   flex-direction: column;
+  padding: 10px;
+  margin: 0 0 10px;
 }
 
-#card-text {
+input, select {
+  border: 1px solid rgba(255,255,255, 0.5);
+  background-color: white;
+  border-radius: 5px;
+  padding: 5px;
+}
+
+textarea {
   width: 300px;
   height: 100px;
+  border: 1px solid rgba(255,255,255, 0.5);
+  border-radius: 5px;
+  padding: 5px;
 }
 
 .items-page {
@@ -62,6 +76,19 @@ button {
   flex-direction: column;
 }
 
-.buttons {
-  margin-bottom: 10px;
+.buttons button, #add-item {
+  margin: 10px;
+  font-size: 0.9rem;
+  padding: 5px;
+  border: 1px solid #D3E2E5;
+  border-radius: 5px;
+  font-weight: bold;
+}
+
+.buttons button:hover, #add-item:hover {
+  cursor: pointer;
+}
+
+fieldset {
+  border: none;
 }

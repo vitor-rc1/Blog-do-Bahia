@@ -179,7 +179,7 @@ class PostForm extends React.Component {
     return (
       <div>
         <form>
-          <h2 className="title">Criar post</h2>
+          <h2 className="title">{newPost ? 'Criar post' : 'Editar post'}</h2>
           <div className="container">
             <div className="page-content">
               <fieldset className="card-content">
@@ -197,7 +197,7 @@ class PostForm extends React.Component {
                 <input
                   type="text"
                   id="card-title"
-                  placeholder="URL"
+                  placeholder="titulo"
                   name="cardTitle"
                   onChange={({ target: { name, value } }) => this.updatePost(name, value)}
                   value={cardTitle}
