@@ -20,7 +20,13 @@ class Login extends Component {
 
   async handleSubmit() {
     const response = await auth(this.state)
-    console.log(response);
+    const { history } = this.props;
+    const { token } = response;
+    if( token ) {
+      sessionStorage.setItem('token', response.token);
+      history.push('/admin');
+    }
+    console.log(response)
   }
 
   render() {

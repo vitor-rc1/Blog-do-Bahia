@@ -13,6 +13,7 @@ app.use(router)
 
 const {
   login,
+  validateUser,
   newPost,
   getPosts,
   getPost,
@@ -27,20 +28,21 @@ const {
 
 // LOGIN
 router.post('/login', login);
+router.post('/validateUser', validateJWT, validateUser);
 
 //POSTS
-router.post('/post/create', newPost);
+router.post('/post/create', validateJWT, newPost);
 router.get('/posts', getPosts);
-router.get('/post/load/:id', validateJWT, getPost);
-router.put('/post/update/:id', updatePost);
-router.delete('/post/delete/:id', deletePost);
+router.get('/post/load/:id', getPost);
+router.put('/post/update/:id', validateJWT, updatePost);
+router.delete('/post/delete/:id', validateJWT, deletePost);
 
 //SECTIONS
-router.post('/section/create', newSection);
+router.post('/section/create', validateJWT, newSection);
 router.get('/sections', getSections);
 router.get('/section/load/:id', getSection);
-router.put('/section/update/:id', updateSection);
-router.delete('/section/delete/:id', deleteSection);
+router.put('/section/update/:id', validateJWT, updateSection);
+router.delete('/section/delete/:id', validateJWT, deleteSection);
 
 app.listen(port, () => {
   console.log("Ta rodando o menino");

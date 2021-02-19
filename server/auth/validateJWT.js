@@ -8,7 +8,6 @@ module.exports = async (req, res, next) => {
   if (!token) {
     return res.status(400).json({ error: 'Token não encontrado ou informado' });
   }
-  // const decoded = jwt.verify(token, secret);
 
   try {
     const decoded = jwt.verify(token, secret);

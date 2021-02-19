@@ -10,4 +10,5 @@ module.exports = {
   updateSection: require('./controllers/section/updateSection'),
   deleteSection: require('./controllers/section/deleteSection'),
   login: require('./controllers/login'),
+  validateUser: require('./controllers/validateUser'),
 }

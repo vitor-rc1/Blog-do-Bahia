@@ -11,7 +11,8 @@ class EditPost extends React.Component {
   }
 
   async handleSubmit(post) {
-    updatePost(post);
+    const response = await updatePost(post);
+    alert(response.statusText);
     this.setState({ shouldRedirect: true });
   }
 
@@ -28,7 +29,7 @@ class EditPost extends React.Component {
 
   render() {
     if (this.state.shouldRedirect) {
-    return (<Redirect to="/" />);
+    return (<Redirect to="/admin" />);
     }else if(this.state.shouldLoading) {
     return (
       <PostForm type="edit" handleSubmit={ this.handleSubmit } editPost={true} post={this.state.data.post}/>

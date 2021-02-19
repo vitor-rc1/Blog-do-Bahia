@@ -1,34 +1,12 @@
-import { BrowserRouter, Switch, Route } from 'react-router-dom';
-import Home from './pages/Home';
-import About from './pages/About';
-import Post from './pages/Post';
-import Section from './pages/Section';
-
-import EditPost from './pages/EditPost';
-import NewPost from './pages/NewPost';
-
-import EditSection from './pages/EditSection';
-import NewSection from './pages/NewSection';
-
-import Login from './pages/Login';
+import { BrowserRouter } from 'react-router-dom';
+import Routes from './routes'
 
 import './App.css';
-
 
 function App() {
   return (
     <BrowserRouter>
-      <Switch>
-        <Route exact path="/" component={ Home } />
-        <Route exact path="/about" component={ About } />
-        <Route exact path="/login" component={ Login } />
-        <Route exact path="/:id" component={ Post } />
-        <Route exact path="/post/:id/edit" component={EditPost} />
-        <Route exact path="/post/new" component={NewPost} />
-        <Route exact path="/section/new" component={NewSection} />
-        <Route exact path="/section/:id" component={Section} />
-        <Route exact path="/section/:id/edit" component={EditSection} />
-      </Switch>
+      <Routes />
     </BrowserRouter>
   );
 }

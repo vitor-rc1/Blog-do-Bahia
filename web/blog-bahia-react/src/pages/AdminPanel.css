@@ -1,0 +1,27 @@
+.admin-panel {
+  margin-top: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.admin-panel .sections,
+.admin-panel .posts {
+  padding: 15px;
+  background-color: rgba(255, 255, 255, 0.5);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 1px solid white;
+  border-radius: 10px;
+  margin: 10px auto;
+}
+table {
+  border-collapse: collapse;
+}
+td {
+  padding: 5px;
+}
+tbody {
+  background-color: rgba(100, 100, 100, 0.5);
+}

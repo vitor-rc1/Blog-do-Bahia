@@ -1,4 +1,4 @@
-const path = 'http://localhost:3002';
+import path from './Path';
 
 //posts
 export const getPosts = async () => {
@@ -15,24 +15,44 @@ export const getPost = async (idPost) => {
 
 export const newPost = async (post) => {
   const URL = `${path}/post/create`;
-  await fetch(URL, {
+  const token = sessionStorage.getItem('token');
+  const response = await fetch(URL, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
+      'authorization': token
     },
     body: JSON.stringify(post),
   });
+  return response;
 }
 
 export const updatePost = async (post) => {
   const URL = `${path}/post/update/${post.id}`;
-  await fetch(URL, {
+  const token = sessionStorage.getItem('token');
+  const response = await fetch(URL, {
     method: 'PUT',
     headers: {
       'Content-Type': 'application/json',
+      'authorization': token
     },
     body: JSON.stringify(post),
   });
+  return response;
+}
+
+export const deletePost = async (id) => {
+  const URL = `${path}/post/delete/${id}`;
+  const token = sessionStorage.getItem('token');
+  console.log(id)
+  const response = await fetch(URL, {
+    method: 'DELETE',
+    headers: {
+      'Content-Type': 'application/json',
+      'authorization': token
+    },
+  });
+  return response;
 }
 
 //sections
@@ -50,24 +70,45 @@ export const getSection = async (idSection) => {
 
 export const newSection = async (section) => {
   const URL = `${path}/section/create`;
-  await fetch(URL, {
+  const token = sessionStorage.getItem('token');
+  const response = await fetch(URL, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
+      'authorization': token
     },
     body: JSON.stringify(section),
   });
+  return response;
 }
 
 export const updateSection = async (section) => {
   const URL = `${path}/section/update/${section.id}`;
-  await fetch(URL, {
+  const token = sessionStorage.getItem('token');
+  const response = await fetch(URL, {
     method: 'PUT',
     headers: {
       'Content-Type': 'application/json',
+      'authorization': token
     },
     body: JSON.stringify(section),
   });
+
+  return response;
+}
+
+export const deleteSection = async (id) => {
+  const URL = `${path}/section/delete/${id}`;
+  const token = sessionStorage.getItem('token');
+  console.log(id)
+  const response = await fetch(URL, {
+    method: 'DELETE',
+    headers: {
+      'Content-Type': 'application/json',
+      'authorization': token
+    },
+  });
+  return response;
 }
 
 export const auth = async (user) => {

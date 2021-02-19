@@ -11,13 +11,14 @@ class NewPost extends React.Component {
   }
 
   async handleSubmit(section) {
-    newSection(section);
+    const response = await newSection(section);
+    alert(response.statusText);
     this.setState({ shouldRedirect: true });
   }
 
   render() {
     if (this.state.shouldRedirect) {
-      return (<Redirect to="/" />);
+      return (<Redirect to="/admin" />);
     }
     return (
       <SectionForm type="new" handleSubmit={this.handleSubmit} newSection={true} />

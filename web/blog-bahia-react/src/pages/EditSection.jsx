@@ -11,7 +11,8 @@ class EditSection extends React.Component {
   }
 
   async handleSubmit(section) {
-    updateSection(section);
+    const response = await updateSection(section);
+    alert(response.statusText);
     this.setState({ shouldRedirect: true });
   }
 
@@ -27,7 +28,7 @@ class EditSection extends React.Component {
 
   render() {
     if (this.state.shouldRedirect) {
-    return (<Redirect to="/" />);
+    return (<Redirect to="/admin" />);
     }else if(this.state.shouldLoading) {
     return (
       <SectionForm type="edit" handleSubmit={ this.handleSubmit } editSection={true} post={this.state.data[0]}/>
