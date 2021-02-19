@@ -1,6 +1,7 @@
 const express = require('express');
 var cors = require('cors');
-const Router = require('express-promise-router')
+const Router = require('express-promise-router');
+const validateJWT = require('./auth/validateJWT');
 
 const app = express();
 const port = 3002;
@@ -30,7 +31,7 @@ router.post('/login', login);
 //POSTS
 router.post('/post/create', newPost);
 router.get('/posts', getPosts);
-router.get('/post/load/:id', getPost);
+router.get('/post/load/:id', validateJWT, getPost);
 router.put('/post/update/:id', updatePost);
 router.delete('/post/delete/:id', deletePost);
 
