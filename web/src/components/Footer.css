@@ -1,0 +1,16 @@
+.footer-component {
+  display: flex;
+  /* margin-top: 20px; */
+  margin-top:auto;
+  justify-content: space-around;
+  align-items: center;
+  background-color: #176E8C;
+  width: 100%;
+  color: white;
+  height: 45px;
+}
+
+.footer-component .link {
+  text-decoration: none;
+  color: white;
+}

@@ -1,12 +1,7 @@
 const { Pool } = require('pg');
+const { dbAcess } = require('./dbAcess')
 
-const pool = new Pool({
-  user: 'postgres',
-  host: '127.0.0.1',
-  database: 'teste',
-  password: 'hdq001@@',
-  port: 5432,
-});
+const pool = new Pool(dbAcess);
 
 // create table posts
 const postQuery = `

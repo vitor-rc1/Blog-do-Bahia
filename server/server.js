@@ -1,10 +1,10 @@
+process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
 const express = require('express');
 var cors = require('cors');
 const Router = require('express-promise-router');
 const validateJWT = require('./auth/validateJWT');
-
 const app = express();
-const port = 3002;
+const port = process.env.PORT || 5000;
 const router = new Router();
 
 app.use(express.json())

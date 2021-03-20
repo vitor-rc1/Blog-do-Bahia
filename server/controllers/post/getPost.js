@@ -10,7 +10,7 @@ module.exports = (req, res) => {
     const [postResult] = result.rows;
     response.post = postResult;
 
-    pool.query(`SELECT * FROM sections WHERE title='${response.post.section}'`, (error, result) => {
+    pool.query(`SELECT * FROM sections WHERE id='${response.post.section}'`, (error, result) => {
       if (error) {
         console.error(error);
         return;

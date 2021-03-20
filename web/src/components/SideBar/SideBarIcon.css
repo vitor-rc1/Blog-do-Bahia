@@ -1,0 +1,19 @@
+.side-bar-icon {
+  width: 60px;
+  position: absolute;
+  right: 20px;
+  top: -85px;
+  background-color: #C3F4FB;
+  border-radius: 30px;
+}
+
+.side-bar-icon:hover {
+  background-color: #2F76A2;
+}
+
+@media (max-width: 730px) {
+  .side-bar-icon {
+    width: 30px;
+    border-radius: 30px;
+  }
+ }
