@@ -30,7 +30,7 @@ class EditPost extends React.Component {
   render() {
     if (this.state.shouldRedirect) {
     return (<Redirect to="/admin" />);
-    }else if(this.state.shouldLoading) {
+    } else if(this.state.shouldLoading) {
     return (
       <PostForm type="edit" handleSubmit={ this.handleSubmit } editPost={true} post={this.state.data.post}/>
     )}

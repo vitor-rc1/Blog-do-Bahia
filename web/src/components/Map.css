@@ -1,0 +1,44 @@
+.map {
+  width: fit-content;
+  margin: auto;
+  position: relative;
+}
+
+.map-img {
+  width: 580px;
+}
+
+.marker-container {
+  max-width: 150px;
+  padding: 10px 20px;
+  display: none;
+  opacity: 0;
+}
+
+.marker:hover + .marker-container{
+  display: block;
+  opacity: 1;
+}
+
+.marker-url {
+  color: black;
+}
+
+.marker {
+  width: 25px;
+  height: 25px;
+}
+
+.marker:hover {
+  color: yellow;
+}
+
+.marker-title {
+  margin-bottom: 5px;
+}
+
+@media (max-width: 850px) {
+  .map-img {
+    width: 70vw;
+  }
+}

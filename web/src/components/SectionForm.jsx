@@ -15,6 +15,7 @@ class SectionForm extends React.Component {
       id: 0,
       colorSection: '',
       colorNavFooter: '',
+      mapCheckbox: false,
     };
     this.updatePost = this.updatePost.bind(this);
     this.updateItemsState = this.updateItemsState.bind(this);
@@ -41,6 +42,7 @@ class SectionForm extends React.Component {
       indexText: indextext,
       title,
       id,
+      mapCheckbox: mapcheckbox,
     } = this.state
     return (
       <div>
@@ -52,7 +54,8 @@ class SectionForm extends React.Component {
             img,
             indextext,
             title,
-            id
+            id,
+            mapcheckbox
           }}
           goToFirstPost={() => null}
           preview={true}
@@ -77,6 +80,7 @@ class SectionForm extends React.Component {
       id,
       colorsection: colorSection,
       colornavfooter: colorNavFooter,
+      mapcheckbox: mapCheckbox
     } = post
     this.setState({
       title,
@@ -86,6 +90,7 @@ class SectionForm extends React.Component {
       id,
       colorSection,
       colorNavFooter,
+      mapCheckbox
     })
   }
 
@@ -98,6 +103,7 @@ class SectionForm extends React.Component {
       preview,
       colorSection,
       colorNavFooter,
+      mapCheckbox,
     } = this.state;
     const { newSection, editSection } = this.props;
     return (
@@ -155,6 +161,15 @@ class SectionForm extends React.Component {
                 name="colorNavFooter"
                 onChange={({ target: { name, value } }) => this.updatePost(name, value)}
                 value={colorNavFooter}
+              />
+
+              <label>Habilitar mapa ?</label>
+              <input
+                type="checkbox"
+                id="map-checkbox"
+                name="mapCheckbox"
+                onClick={({ target: { name, checked } }) => this.updatePost(name, checked)}
+                checked={mapCheckbox}
               />
 
               <label htmlFor="card-text">Sobre</label>

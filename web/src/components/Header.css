@@ -5,24 +5,28 @@
   flex-direction: column;
   margin: 15px 0;
 }
-.title {
-  /* border-radius: 10px; */
+.header .title {
+  font-family: 'Cinzel';
   margin: 0 auto;
-  /* width: 300px; */
-  /* height: fit-content; */
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
   transition: color 0.2s;
   font-size: 2rem;
-  /* color: white; */
-
+  border-radius: 10px;
 }
 
-@media (max-width: 730px) {
- .title {
-   margin: 35px 0 10px;
+.title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@media (max-width: 850px) {
+  .header .title {
+   margin: 50px 0 10px;
    font-size: 1.2rem;
+   background-color: rgba(255, 255, 255, 0.274);
  }
 }

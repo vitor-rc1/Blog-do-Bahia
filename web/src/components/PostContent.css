@@ -101,11 +101,32 @@
 @media print {  
   .footer-component, 
   .post-buttons,
-  .side-bar-component {
+  .side-bar-component,
+  .post-audio-component,
+  .post-video-component {
     display: none;
   }
 
   .post-title {
     text-align: center;
+  }
+
+  * {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  @page {
+    margin: 0;
+  }
+
+  .post-text-component {
+    /* page-break-before: always; */
+
+  }
+
+  img {
+    width: 50%;
+    page-break-before: always;
   }
 }

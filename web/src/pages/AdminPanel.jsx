@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Loading from '../components/Loading';
 import { getPosts, getSections, deleteSection, deletePost } from '../services/api';
 import { 
   RiEdit2Fill, 
@@ -6,6 +7,7 @@ import {
   RiAddCircleLine,
   RiHome2Line 
 } from "react-icons/ri";
+import { BiMapAlt } from "react-icons/bi";
 import './AdminPanel.css';
 
 class AdminPanel extends Component {
@@ -53,16 +55,19 @@ class AdminPanel extends Component {
     const { history: { push } } = this.props;
     if (!postsLoaded && !sectionsLoaded) {
       return (
-        <div>
-          ...Carregando
-        </div>
+        <Loading />
       )
     }
     return (
       <div className="admin-panel">
+        
         <RiHome2Line 
           className="home-icon"
           onClick={() => push("/")}
+        />
+        <BiMapAlt 
+          className="map"
+          onClick={() => push("/map/edit")}
         />
         <div className="sections">
           <h2>Sections</h2>

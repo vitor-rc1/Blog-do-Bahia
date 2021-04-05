@@ -15,6 +15,9 @@ import NewSection from '../pages/NewSection';
 import Login from '../pages/Login';
 import AdminPanel from '../pages/AdminPanel';
 
+import EditMap from '../pages/EditMap';
+import NotFound from '../components/NotFound';
+
 function Routes() {
   return (
     <Switch>
@@ -28,7 +31,8 @@ function Routes() {
     <PrivateRoute exact path="/section/new" component={NewSection} />
     <Route exact path="/section/:id" component={Section} />
     <PrivateRoute exact path="/section/:id/edit" component={EditSection} />
-    <Route render={() => <div>Não encontrado</div>} />
+    <PrivateRoute exact path="/map/edit" component={EditMap} />
+    <Route render={() => <NotFound />} />
   </Switch>
   );
 }

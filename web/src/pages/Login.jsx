@@ -71,12 +71,12 @@ class Login extends Component {
         >
           Entrar
         </button>
-        <button
+        {/* <button
           type="button"
           className="button-forgot"
         >
           Esqueci a senha
-        </button>
+        </button> */}
       </div>
     );
   }

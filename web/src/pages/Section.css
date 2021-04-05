@@ -16,9 +16,9 @@
   flex-direction: column;
 }
 
-.section-component .section:hover {
+/* .section-component .section:hover {
   cursor: pointer;
-}
+} */
 
 .section .title {
   margin: 0 0;

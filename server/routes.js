@@ -9,6 +9,8 @@ module.exports = {
   newSection: require('./controllers/section/newSection'),
   updateSection: require('./controllers/section/updateSection'),
   deleteSection: require('./controllers/section/deleteSection'),
+  getMap: require('./controllers/map/getMap'),
+  updateMap: require('./controllers/map/updateMap'),
   login: require('./controllers/login'),
   validateUser: require('./controllers/validateUser'),
 }

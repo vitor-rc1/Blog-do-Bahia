@@ -1,5 +1,5 @@
 const { Pool } = require('pg');
-const { dbAcess } = require('./dbAcess')
+const { dbAcess } = require('./dbAcess');
 
 const pool = new Pool(dbAcess);
 
@@ -35,7 +35,8 @@ CREATE TABLE IF NOT EXISTS sections (
   colorSection text, 
   colorNavFooter text, 
   about text, 
-  indexText text
+  indexText text,
+  mapcheckbox boolean DEFAULT false
   )
 `
 pool.query(
@@ -44,5 +45,24 @@ pool.query(
     console.log(error)
   }
 )
+
+// create Map
+const queryMap = `
+CREATE TABLE IF NOT EXISTS map(
+  id SERIAL PRIMARY KEY, 
+  mapPositions jsonb
+  );
+
+INSERT INTO map(id, mapPositions)
+VALUES(1, '[]')
+ON CONFLICT (id)
+DO NOTHING;
+`
+pool.query(
+  queryMap,
+  (error) => {
+    console.log(error)
+  }
+);
 
 module.exports = { pool }

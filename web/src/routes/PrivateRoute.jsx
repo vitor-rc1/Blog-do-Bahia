@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
+import NotAuthorized from '../components/NotAuthorized';
 import { BlogContext } from '../Context';
-import { Route, Redirect } from 'react-router-dom';
+import { Route } from 'react-router-dom';
 import validateUser from '../auth/validateUser';
 
 function PrivateRoute({ component: Component, ...rest }) {
@@ -11,12 +12,7 @@ function PrivateRoute({ component: Component, ...rest }) {
     <Route
       {...rest}
       render={ props => 
-        validate ? (
-          <Component { ...props } />
-        ) : (
-          // <Redirect to ={{ pathname: "/", state: { from: props.location } }} />
-          <div>Acesso não permitido</div>
-        )
+        validate ? <Component { ...props } /> : <NotAuthorized />
       }
     />
   );

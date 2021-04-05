@@ -111,6 +111,29 @@ export const deleteSection = async (id) => {
   return response;
 }
 
+// map
+export const getMap = async () => {
+  const URL = `${path}/map`;
+  const response = await fetch(URL);
+  return await response.json();
+}
+
+export const updateMap = async (positions) => {
+  const URL = `${path}/map/update`;
+  const token = sessionStorage.getItem('token');
+  const response = await fetch(URL, {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json',
+      'authorization': token
+    },
+    body: JSON.stringify({positions}),
+  });
+
+  return response;
+}
+
+// autentication
 export const auth = async (user) => {
   const URL = `${path}/login`;
   const response = await fetch(URL, {

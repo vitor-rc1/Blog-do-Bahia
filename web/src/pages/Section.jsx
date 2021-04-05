@@ -2,14 +2,15 @@ import React, { Component } from 'react';
 import './Section.css'
 import SectionContent from '../components/SectionContent';
 import { getSection } from '../services/api';
+import Loading from '../components/Loading';
 
 class Section extends Component {
   constructor(props) {
     super();
     this.state = {
-      shouldLoading: false, 
+      shouldLoading: false,
       section: {
-        colornavfooter : '#176E8C'
+        colornavfooter: '#176E8C'
       },
       id: props.match.params.id,
       posts: [],
@@ -25,10 +26,10 @@ class Section extends Component {
     this.loadCards(this.state.id)
   }
 
-  componentDidUpdate(){
+  componentDidUpdate() {
     const newId = this.props.match.params.id;
     const { id } = this.state;
-    if(newId !== id) {
+    if (newId !== id) {
       this.loadSection(newId);
       this.loadCards(newId)
       this.setState({ id: newId });
@@ -37,13 +38,13 @@ class Section extends Component {
 
   loadCards(idSection) {
     const cards = JSON.parse(sessionStorage.getItem("posts"))
-      .filter(({section}) => section == idSection);
+      .filter(({ section }) => section == idSection);
     this.setState({ posts: cards });
     console.log(cards);
   }
 
   loadSection(idSection) {
-    this.setState({shouldLoading: false}, async () => {
+    this.setState({ shouldLoading: false }, async () => {
       const [section] = await getSection(idSection);
       this.setState({ section }, () => {
         this.setState({ shouldLoading: true })
@@ -52,7 +53,7 @@ class Section extends Component {
   }
 
   goToFirstPost(sectionId) {
-    const allPosts = JSON.parse(sessionStorage.getItem('posts')); 
+    const allPosts = JSON.parse(sessionStorage.getItem('posts'));
     const firstPost = allPosts.find(post => post.section === sectionId).id;
     const { history } = this.props;
 
@@ -60,17 +61,17 @@ class Section extends Component {
   }
 
   render() {
-    const { shouldLoading, section, posts, id } = this.state;
+    const { shouldLoading, section, posts } = this.state;
     if (!shouldLoading) {
-      return '...Carregando';
+      return <Loading />;
     }
     return (
       <div>
-        <SectionContent 
-          section={ section } 
-          goToFirstPost={ this.goToFirstPost } 
-          preview={false}
-          posts={posts}
+        <SectionContent
+          section={ section }
+          goToFirstPost={ this.goToFirstPost }
+          preview={ false }
+          posts={ posts }
         />
       </div>
     );

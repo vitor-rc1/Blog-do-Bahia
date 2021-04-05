@@ -1,9 +1,9 @@
 import React from 'react';
 import Header from '../components/Header';
-import Card from '../components/Card';
 import SideBar from '../components/SideBar/SideBar';
 import Footer from '../components/Footer';
 import ReactPlayer from 'react-player';
+import Loading from '../components/Loading';
 
 import './Home.css';
 
@@ -66,7 +66,7 @@ class Home extends React.Component {
       )
     }
     if (!shouldLoading) {
-      return '...Carregando';
+      return <Loading />;
     }
     return (
       <div className="home" >

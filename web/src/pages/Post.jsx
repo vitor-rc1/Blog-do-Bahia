@@ -2,6 +2,7 @@ import React from 'react';
 import PostContent from '../components/PostContent';
 import SideBar from '../components/SideBar/SideBar';
 import Footer from '../components/Footer';
+import Loading from '../components/Loading';
 
 import './Post.css';
 
@@ -50,13 +51,17 @@ class Post extends React.Component {
     const { shouldLoading, post: { colornavfooter }, section, id } = this.state;
     const { history } = this.props;
     if (!shouldLoading) {
-      return '...Carregando';
+      return <Loading />;
     }
     
     return (
       <div 
         className="post-component"
-        style={section ? {backgroundImage: `url(${section.img})`} : null}
+        style={section ? {
+          backgroundImage: `url(${section.img})`,
+          backgroundSize: '100vh',
+          backgroundPositionX: 'center'
+      } : null}
       >
         <SideBar color={colornavfooter} id={id} />
         <PostContent post={this.state.post} history={ history }/>
